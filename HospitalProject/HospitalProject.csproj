@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -48,17 +49,15 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
@@ -102,6 +101,7 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -186,65 +186,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202203250103548_prescreenings.cs" />
-    <Compile Include="Migrations\202203250103548_prescreenings.Designer.cs">
-      <DependentUpon>202203250103548_prescreenings.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202203250110431_patients.cs" />
-    <Compile Include="Migrations\202203250110431_patients.Designer.cs">
-      <DependentUpon>202203250110431_patients.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202203250122209_prescreening-patient.cs" />
-    <Compile Include="Migrations\202203250122209_prescreening-patient.Designer.cs">
-      <DependentUpon>202203250122209_prescreening-patient.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202203250328349_appointment-patient.cs" />
-    <Compile Include="Migrations\202203250328349_appointment-patient.Designer.cs">
-      <DependentUpon>202203250328349_appointment-patient.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202203250330420_staffs.cs" />
-    <Compile Include="Migrations\202203250330420_staffs.Designer.cs">
-      <DependentUpon>202203250330420_staffs.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202203250331402_appointment-staff.cs" />
-    <Compile Include="Migrations\202203250331402_appointment-staff.Designer.cs">
-      <DependentUpon>202203250331402_appointment-staff.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202203250335016_specializations.cs" />
-    <Compile Include="Migrations\202203250335016_specializations.Designer.cs">
-      <DependentUpon>202203250335016_specializations.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202203250419526_staff-speacialization.cs" />
-    <Compile Include="Migrations\202203250419526_staff-speacialization.Designer.cs">
-      <DependentUpon>202203250419526_staff-speacialization.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202203250424105_announcements.cs" />
-    <Compile Include="Migrations\202203250424105_announcements.Designer.cs">
-      <DependentUpon>202203250424105_announcements.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202203250428587_announcement-staff.cs" />
-    <Compile Include="Migrations\202203250428587_announcement-staff.Designer.cs">
-      <DependentUpon>202203250428587_announcement-staff.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202203250433433_parkingspots.cs" />
-    <Compile Include="Migrations\202203250433433_parkingspots.Designer.cs">
-      <DependentUpon>202203250433433_parkingspots.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202203250435467_parkingspot-staff.cs" />
-    <Compile Include="Migrations\202203250435467_parkingspot-staff.Designer.cs">
-      <DependentUpon>202203250435467_parkingspot-staff.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202203250439409_inventories.cs" />
-    <Compile Include="Migrations\202203250439409_inventories.Designer.cs">
-      <DependentUpon>202203250439409_inventories.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202203250444173_inventoryledgers.cs" />
-    <Compile Include="Migrations\202203250444173_inventoryledgers.Designer.cs">
-      <DependentUpon>202203250444173_inventoryledgers.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202203250449136_inventory-inventoryledger.cs" />
-    <Compile Include="Migrations\202203250449136_inventory-inventoryledger.Designer.cs">
-      <DependentUpon>202203250449136_inventory-inventoryledger.cs</DependentUpon>
+    <Compile Include="Migrations\202203280044076_initial.cs" />
+    <Compile Include="Migrations\202203280044076_initial.Designer.cs">
+      <DependentUpon>202203280044076_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -336,50 +280,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202203250103548_prescreenings.resx">
-      <DependentUpon>202203250103548_prescreenings.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202203250110431_patients.resx">
-      <DependentUpon>202203250110431_patients.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202203250122209_prescreening-patient.resx">
-      <DependentUpon>202203250122209_prescreening-patient.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202203250328349_appointment-patient.resx">
-      <DependentUpon>202203250328349_appointment-patient.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202203250330420_staffs.resx">
-      <DependentUpon>202203250330420_staffs.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202203250331402_appointment-staff.resx">
-      <DependentUpon>202203250331402_appointment-staff.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202203250335016_specializations.resx">
-      <DependentUpon>202203250335016_specializations.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202203250419526_staff-speacialization.resx">
-      <DependentUpon>202203250419526_staff-speacialization.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202203250424105_announcements.resx">
-      <DependentUpon>202203250424105_announcements.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202203250428587_announcement-staff.resx">
-      <DependentUpon>202203250428587_announcement-staff.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202203250433433_parkingspots.resx">
-      <DependentUpon>202203250433433_parkingspots.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202203250435467_parkingspot-staff.resx">
-      <DependentUpon>202203250435467_parkingspot-staff.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202203250439409_inventories.resx">
-      <DependentUpon>202203250439409_inventories.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202203250444173_inventoryledgers.resx">
-      <DependentUpon>202203250444173_inventoryledgers.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202203250449136_inventory-inventoryledger.resx">
-      <DependentUpon>202203250449136_inventory-inventoryledger.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202203280044076_initial.resx">
+      <DependentUpon>202203280044076_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

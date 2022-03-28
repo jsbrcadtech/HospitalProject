@@ -22,3 +22,9 @@ select,
 textarea {
     max-width: 280px;
 }
+
+#errMsg {
+    margin-top: 20px;
+    color: red;
+    font: bold;
+}

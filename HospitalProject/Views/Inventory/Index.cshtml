@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<p id="errMsg" class="text-center"></p>
+
+<h2>Index</h2>
+
+<a href="/inventory/add">Add New Item</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Quantity</th>
+        </tr>
+    </thead>
+    <tbody id="tBody">
+    </tbody>
+</table>
+
+@Scripts.Render("~/Scripts/Common/service.js")
+@Scripts.Render("~/Scripts/Inventory/inventory-service.js")
+@Scripts.Render("~/Scripts/Inventory/index.js")

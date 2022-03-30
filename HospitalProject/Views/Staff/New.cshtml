@@ -1,15 +1,12 @@
-﻿@model IEnumerable<HospitalProject.Models.ViewModels.UpdateStaff>
+﻿@model IEnumerable<HospitalProject.Models.SpecializationsDto>
 
 @{
-    ViewBag.Title = "New";
+    ViewBag.Title = "Create";
 }
 
-<h2>Create New Staff</h2>
+<h2>Add New Staff</h2>
 
-<div class="form-box">
-
-    <form action="/Staffs/Create" method="POST">
-
+    <form action="/Staff/Create" method="POST">
         <div class="field-container">
             <label>Name:</label>
             <input type="text" name="Name" class="field-container__input-box" />
@@ -25,25 +22,18 @@
             <input type="text" name="EndTime" class="field-container__input-box" />
         </div>
 
-        @*<div>
-            <label>Parking Spot Id:</label>
-            <select name="Id">
-                @foreach (var parkingspot in Model.ParkingSpotOptions)
+        <div>
+            <label>Specialization:</label>
+            <select name="Name">
+                @foreach (var specializations in Model)
                 {
-                    var selected = "";
-                    if (parkingspot.Id == Model.SelectedStaff.Id)
-                    {
-                        selected = "selected";
-                    }
-                    <option value="@parkingspot.Id" @selected>@parkingspot.Code</option>
+                <option value="@specializations.Id">@specializations.Name</option>
+                    
                 }
             </select>
-        </div>*@
+        </div>
 
-        <div><input type="submit" value="Create Staff" /></div>
-
+        <div><input type="submit" value="Add Staff" /></div>
     </form>
-</div>
-
 
 

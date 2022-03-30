@@ -276,7 +276,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\ParkingSpot\List.cshtml" />
     <Content Include="Views\ParkingSpot\Error.cshtml" />
-    <Content Include="Views\New.cshtml" />
     <Content Include="Views\ParkingSpot\New.cshtml" />
     <Content Include="Views\ParkingSpot\Edit.cshtml" />
     <Content Include="Views\ParkingSpot\DeleteConfirm.cshtml" />

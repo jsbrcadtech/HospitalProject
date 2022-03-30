@@ -12,6 +12,6 @@ namespace HospitalProject.Models.ViewModels
             public StaffsDto SelectedStaff { get; set; }
 
             // All Parking Spots to choose from when updating this Staff
-            public IEnumerable<ParkingSpotDto> ParkingSpotOptions { get; set; }
+            public IEnumerable<SpecializationsDto> SpecializationsOptions { get; set; }
     }
 }

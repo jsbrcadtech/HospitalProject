@@ -99,13 +99,14 @@ namespace HospitalProject.Controllers
         // GET: Staff/New
         public ActionResult New()
         {
-            //information about all parkingspots in the system.
-            //GET api/parkingspotdata/listparkingspots
-            string url = "parkingspotdata/listparkingspots";
-            HttpResponseMessage response = client.GetAsync(url).Result;
-            IEnumerable<ParkingSpotDto> ParkingSpotOptions = response.Content.ReadAsAsync<IEnumerable<ParkingSpotDto>>().Result;
+            //information about all specializations in the system.
+            //GET api/specializationdata/listspecializations
 
-            return View(ParkingSpotOptions);
+            string url = "specializationdata/listspecializations";
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            IEnumerable<SpecializationsDto> SpecializationOptions = response.Content.ReadAsAsync<IEnumerable<SpecializationsDto>>().Result;
+
+            return View(SpecializationOptions);
         }
 
         //GET: Staff/Create
@@ -121,7 +122,8 @@ namespace HospitalProject.Controllers
 
             string jsonpayload = jss.Serialize(Staff);
             HttpContent content = new StringContent(jsonpayload);
-            //content.Headers.ContentType.MediaType = "application/json";
+            content.Headers.ContentType.MediaType = "application/json";
+
             HttpResponseMessage response = client.PostAsync(url, content).Result;
             if (response.IsSuccessStatusCode)
             {
@@ -144,13 +146,14 @@ namespace HospitalProject.Controllers
             StaffsDto SelectedStaff = response.Content.ReadAsAsync<StaffsDto>().Result;
             ViewModel.SelectedStaff = SelectedStaff;
 
-            // all parking spots to choose from when updating this Staff
-            //the existing staff information
-            url = "parkingspotdata/listparkingspots/";
-            response = client.GetAsync(url).Result;
-            IEnumerable<ParkingSpotDto> ParkingSpotOptions = response.Content.ReadAsAsync<IEnumerable<ParkingSpotDto>>().Result;
+ 
 
-            ViewModel.ParkingSpotOptions = ParkingSpotOptions;
+
+            // all specializations to choose from when updating this Staff
+            //the existing staff information
+            url = "specialization/listspecializations/";
+            response = client.GetAsync(url).Result;
+            IEnumerable<SpecializationsDto> SpecializationOptions = response.Content.ReadAsAsync<IEnumerable<SpecializationsDto>>().Result;
 
             return View(ViewModel);
         }

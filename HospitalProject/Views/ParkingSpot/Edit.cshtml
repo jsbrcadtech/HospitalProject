@@ -1,0 +1,56 @@
+﻿@model HospitalProject.Models.ViewModels.UpdateParkingSpot
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Update Parking Spot</h2>
+<nav>
+    <ul>
+        <li><a href="/ParkingSpot/List">Go back to list</a></li>
+        <li><a style="color:darkred" href="/ParkingSpot/DeleteConfirm/@Model.SelectedParkingSpot.Id">Delete</a></li>
+    </ul>
+</nav>
+
+<form action="/ParkingSpot/Update/@Model.SelectedParkingSpot.Id" method="POST" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+
+            <div style="display:none;">
+                @* Passing through the  Parking Spot Id *@
+                <input type="text" name="ParkingSpotId" value="@Model.SelectedParkingSpot.Id" />
+            </div>
+
+            <div>
+                <label>Code:</label>
+                <input type="text" name="ParkingSpotCode" value="@Model.SelectedParkingSpot.Code" />
+            </div>
+
+            <div>
+                <label>Type:</label>
+                <input type="text" name="ParkingSpotType" value="@Model.SelectedParkingSpot.Type" />
+            </div>
+
+            <div>
+                <label>Staff ID:</label>
+                <select name="Id">
+                    @foreach (var staff in Model.StaffsOptions)
+                    {
+                        var selected = "";
+                        if (staff.Id == Model.SelectedParkingSpot.StaffId)
+                        {
+                            selected = "selected";
+                        }
+                        <option value="@staff.Id" @selected>@staff.Id</option>
+                    }
+                </select>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div>
+        <input type="submit" value="Update Parking Spot" />
+    </div>
+</form>

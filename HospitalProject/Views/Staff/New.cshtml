@@ -1,0 +1,49 @@
+﻿@model IEnumerable<HospitalProject.Models.ViewModels.UpdateStaff>
+
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>Create New Staff</h2>
+
+<div class="form-box">
+
+    <form action="/Staffs/Create" method="POST">
+
+        <div class="field-container">
+            <label>Name:</label>
+            <input type="text" name="Name" class="field-container__input-box" />
+        </div>
+
+        <div class="field-container">
+            <label>Start Time:</label>
+            <input type="text" name="StartTime" class="field-container__input-box" />
+        </div>
+
+        <div class="field-container">
+            <label>End Time:</label>
+            <input type="text" name="EndTime" class="field-container__input-box" />
+        </div>
+
+        @*<div>
+            <label>Parking Spot Id:</label>
+            <select name="Id">
+                @foreach (var parkingspot in Model.ParkingSpotOptions)
+                {
+                    var selected = "";
+                    if (parkingspot.Id == Model.SelectedStaff.Id)
+                    {
+                        selected = "selected";
+                    }
+                    <option value="@parkingspot.Id" @selected>@parkingspot.Code</option>
+                }
+            </select>
+        </div>*@
+
+        <div><input type="submit" value="Create Staff" /></div>
+
+    </form>
+</div>
+
+
+

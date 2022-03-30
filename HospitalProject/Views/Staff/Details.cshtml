@@ -1,0 +1,25 @@
+﻿@model HospitalProject.Models.ViewModels.DetailsStaff
+
+@{
+    ViewBag.Title = "Details";
+}
+<a href="/Staff/List">Go back to list</a>
+
+<br />
+<a href="/Staff/Edit/@Model.SelectedStaff.Id">Update</a>
+
+<br />
+<a style="color:darkred;" href="/Staff/DeleteConfirm/@Model.SelectedStaff.Id">Delete</a>
+
+<h2>
+    @Model.SelectedStaff.Name
+</h2>
+
+<div>
+    Start Time: @Model.SelectedStaff.StartTime
+</div>
+
+<div>
+    End Time: @Model.SelectedStaff.EndTime
+</div>
+

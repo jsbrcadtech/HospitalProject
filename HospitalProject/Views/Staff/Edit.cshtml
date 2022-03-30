@@ -1,0 +1,42 @@
+﻿@model HospitalProject.Models.ViewModels.UpdateStaff
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Update Staff</h2>
+<nav>
+    <ul>
+        <li><a href="/Staff/List">Go back to list</a></li>
+        <li><a style="color:darkred;" href="/Staff/DeleteConfirm/@Model.SelectedStaff.Id">Delete</a></li>
+    </ul>
+</nav>
+
+<form action="/Staff/Update/@Model.SelectedStaff.Id" method="POST" enctype="multipart/form-data">
+    <div class="row">
+
+        <div class="col-md-6 col-sm-12">
+            <div>
+                <label>Name</label>
+                <input type="text" name="Name" value="@Model.SelectedStaff.Name" />
+            </div>
+
+            <div>
+                <label>Start Time:</label>
+                <input type="datetime" name="StartTime" value="@Model.SelectedStaff.StartTime" />
+            </div>
+
+            <div>
+                <label>End Time:</label>
+                <input type="datetime" name="EndTime" value="@Model.SelectedStaff.EndTime" />
+            </div>
+
+        </div>
+
+    </div>
+    <div>
+        <input type="submit" value="Update Staff" />
+    </div>
+
+</form>
+

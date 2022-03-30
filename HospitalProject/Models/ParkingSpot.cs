@@ -23,4 +23,14 @@ namespace HospitalProject.Models
         public int StaffId { get; set; }
         public virtual Staff Staffs { get; set; }
     }
+
+    public class ParkingSpotDto
+    {
+        public int Id { get; set; }
+        public string Code { get; set; }
+        public string Type { get; set; }
+        public int StaffId { get; set; }
+
+    }
+
 }

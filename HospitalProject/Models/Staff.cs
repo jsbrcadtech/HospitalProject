@@ -21,4 +21,14 @@ namespace HospitalProject.Models
         public int SpecializationId { get; set; }
         public virtual Specialization Specializations { get; set; }
     }
+
+    public class StaffsDto
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+        public int SpecializationId { get; set; }
+
+    }
 }

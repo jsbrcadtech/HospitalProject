@@ -1,128 +1,72 @@
-﻿using System;
+﻿using HospitalProject.Models;
+using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
 using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using HospitalProject.Models;
+using System.Web.Http;
 
 namespace HospitalProject.Controllers
 {
-    public class SpecializationsController : Controller
+    [RoutePrefix("api/specialization")]
+
+    public class SpecializationDataController : ApiController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private readonly ApplicationDbContext _db = new ApplicationDbContext();
 
-        // GET: Specializations
-        public ActionResult Index()
+        /// <summary>
+        /// Returns all specializations in the system.
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+
+
+        [Route("")]
+        [HttpGet]
+        public IHttpActionResult GetAll()
         {
-            return View(db.Specializations.ToList());
+            return Ok(_db.Specializations);
         }
 
-        public List<HospitalProject.Models.Specialization> List() //Had to create this method to solve the problem my StaffDataController and StaffController 
+        /// <summary>
+        /// Returns specialization by its primary ket
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        [Route("{id:int}")]
+        [HttpGet]
+        public IHttpActionResult GetById(int id)
         {
-            return db.Specializations.ToList();
-        }
-
-        // GET: Specializations/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Specialization specialization = db.Specializations.Find(id);
+            var specialization = _db.Specializations.SingleOrDefault(i => i.Id == id);
             if (specialization == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
-            return View(specialization);
+            return Ok(specialization);
         }
 
-        // GET: Specializations/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Specializations/Create
+        [Route("")]
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name")] Specialization specialization)
+        public IHttpActionResult Add(Specialization specialization)
         {
-            if (ModelState.IsValid)
-            {
-                db.Specializations.Add(specialization);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(specialization);
+            _db.Specializations.Add(specialization);
+            _db.SaveChanges();
+            return Created($"/api/specialization/{specialization.Id}", specialization);
         }
 
-        // GET: Specializations/Edit/5
-        public ActionResult Edit(int? id)
+        [Route("{id:int}")]
+        [HttpDelete]
+        public IHttpActionResult DeleteSpecialization([FromUri] int id)
         {
-            if (id == null)
+            var specializationInDb = _db.Specializations.SingleOrDefault(i => i.Id == id);
+            if (specializationInDb == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return NotFound();
             }
-            Specialization specialization = db.Specializations.Find(id);
-            if (specialization == null)
-            {
-                return HttpNotFound();
-            }
-            return View(specialization);
+
+            _db.Specializations.Remove(specializationInDb);
+            _db.SaveChanges();
+            return Ok();
         }
 
-        // POST: Specializations/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name")] Specialization specialization)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(specialization).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(specialization);
-        }
-
-        // GET: Specializations/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Specialization specialization = db.Specializations.Find(id);
-            if (specialization == null)
-            {
-                return HttpNotFound();
-            }
-            return View(specialization);
-        }
-
-        // POST: Specializations/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Specialization specialization = db.Specializations.Find(id);
-            db.Specializations.Remove(specialization);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
+
 }

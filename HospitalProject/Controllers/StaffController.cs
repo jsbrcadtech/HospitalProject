@@ -97,6 +97,8 @@ namespace HospitalProject.Controllers
         }
 
         // GET: Staff/New
+
+        
         public ActionResult New()
         {
 
@@ -109,6 +111,7 @@ namespace HospitalProject.Controllers
 
             return View(specializations);
         }
+        
 
         //GET: Staff/Create
         [HttpPost]

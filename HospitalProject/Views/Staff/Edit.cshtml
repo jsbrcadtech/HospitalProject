@@ -1,5 +1,4 @@
-﻿@model HospitalProject.Models.ViewModels.UpdateStaff
-
+﻿@model HospitalProject.Models.StaffsDto
 
 @{
     ViewBag.Title = "Edit";
@@ -9,38 +8,43 @@
 <nav>
     <ul>
         <li><a href="/Staff/List">Go back to list</a></li>
-        <li><a style="color:darkred;" href="/Staff/DeleteConfirm/@Model.SelectedStaff.Id">Delete</a></li>
+        <li><a style="color:darkred;" href="/Staff/DeleteConfirm/@Model.Id">Delete</a></li>
     </ul>
 </nav>
 
-<form action="/Staff/Update/@Model.SelectedStaff.Id" method="POST" enctype="multipart/form-data">
+<form action="/Staff/Update/@Model.Id" method="POST">
     <div class="row">
-
         <div class="col-md-6 col-sm-12">
             <div>
-                <label>Name</label>
-                <input type="text" name="Name" value="@Model.SelectedStaff.Name" />
+                <label>Staff Id</label>
+                <input type="number" name="Id" value="@Model.Id" />
             </div>
 
+            <div>
+                <label>Name</label>
+                <input type="text" name="Name" value="@Model.Name" />
+            </div>
+
+            <div>
+                <label>Start Date:</label>
+                <input type="date" name="StartTime" value="@Model.StartTime" />
+            </div>
             <div>
                 <label>Start Time:</label>
-                <input type="datetime" name="StartTime" value="@Model.SelectedStaff.StartTime" />
+                <input type="time" name="StartTime" value="@Model.StartTime" />
             </div>
-
+            <div>
+                <label>End Date:</label>
+                <input type="date" name="StartTime" value="@Model.StartTime" />
+            </div>
             <div>
                 <label>End Time:</label>
-                <input type="datetime" name="EndTime" value="@Model.SelectedStaff.EndTime" />
+                <input type="time" name="EndTime" value="@Model.EndTime" />
             </div>
 
             <div>
                 <label>Specialization:</label>
-                <select name="SpecializationId">
-                    @foreach (var specializations in Model.SpecializationsDto)
-                    {
-                        <option value="@Model.SpecializationsDto.">@Model.SelectedStaff.SpecializationId</option>
-
-                    }
-                </select>
+                <input type="number" name="SpecializationId" value="@Model.SpecializationId" />
             </div>
 
         </div>

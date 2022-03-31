@@ -51,7 +51,7 @@ namespace HospitalProject.Controllers
         // GET: Staff/List
         public ActionResult List()
         {
-            //Objective: Communicate with parkingspot data api to retrieve a list of parkingspots
+            //Objective: Communicate with staff data api to retrieve a list of staffs
             //curl https://localhost:44397/api/staffdata/liststaffs
 
             string url = "staffdata/liststaffs";
@@ -72,8 +72,8 @@ namespace HospitalProject.Controllers
         {
             DetailsStaff ViewModel = new DetailsStaff();
 
-            //objective: communicate with Parking Spot Data Api to retrieve Parking Spot
-            //curl https://localhost:44397/api/parkingspotdata/findparkingspot/{id}
+            //objective: communicate with staff data Api to retrieve a staff
+            //curl https://localhost:44397/api/staffdata/findstaff/{id}
 
             string url = "staffdata/findstaff/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
@@ -82,7 +82,7 @@ namespace HospitalProject.Controllers
             //Debug.WriteLine(response.StatusCode);
 
             StaffsDto SelectedStaff = response.Content.ReadAsAsync<StaffsDto>().Result;
-            //Debug.WriteLine("Number of parking spots received");
+            //Debug.WriteLine("Number of staffs received");
             //Debug.WriteLine(SelectedStaff.Name);
             
             ViewModel.SelectedStaff = SelectedStaff;
@@ -114,7 +114,7 @@ namespace HospitalProject.Controllers
         [HttpPost]
         public ActionResult Create(Staff Staff)
         {
-            GetApplicationCookie();//get ParkingSpot credentials
+            GetApplicationCookie();//get user credentials
             //Debug.WriteLine("the json payload is :");
             //Debug.WriteLine(Staff.Staff);
             //objective: add a new Staff into our system using the API
@@ -141,35 +141,27 @@ namespace HospitalProject.Controllers
         // GET: Staff/Edit/3
         public ActionResult Edit(int id)
         {
-            UpdateStaff ViewModel = new UpdateStaff();
-
-            //the existing Staff information
             string url = "staffdata/findstaffdata/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             StaffsDto SelectedStaff = response.Content.ReadAsAsync<StaffsDto>().Result;
-            ViewModel.SelectedStaff = SelectedStaff;
 
-
-            SpecializationsController controller = new SpecializationsController();
-            IEnumerable<Specialization> specializations = controller.List();
-
-            return View(ViewModel);
+            return View(SelectedStaff);
         }
 
         // POST: Staff/Update/3
         [HttpPost]
         public ActionResult Update(int id, Staff Staff)
         {
+            GetApplicationCookie();//get token credentials
             string url = "staffdata/updatestaff/" + id;
             string jsonpayload = jss.Serialize(Staff);
             HttpContent content = new StringContent(jsonpayload);
+            content.Headers.ContentType.MediaType = "application/json";
             HttpResponseMessage response = client.PostAsync(url, content).Result;
+            //Debug.WriteLine(content);
 
             if (response.IsSuccessStatusCode)
             {
-                MultipartFormDataContent requestcontent = new MultipartFormDataContent();
-                response = client.PostAsync(url, requestcontent).Result;
-
                 return RedirectToAction("List");
             }
             else
@@ -194,6 +186,7 @@ namespace HospitalProject.Controllers
             GetApplicationCookie(); //Gets authentication token credentials 
             string url = "staffdata/deletestaff/" + id;
             HttpContent content = new StringContent("");
+            content.Headers.ContentType.MediaType = "application/json";
             HttpResponseMessage response = client.PostAsync(url, content).Result;
 
             if (response.IsSuccessStatusCode)

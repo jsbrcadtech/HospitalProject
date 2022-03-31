@@ -106,7 +106,14 @@ namespace HospitalProject.Controllers
                 return BadRequest(ModelState);
             }
 
+            if (id != Staff.Id)
+            {
+
+                return BadRequest();
+            }
+
             db.Entry(Staff).State = EntityState.Modified;
+
             try
             {
                 db.SaveChanges();
@@ -169,14 +176,16 @@ namespace HospitalProject.Controllers
         /// FORM DATA: (empty)
         /// </example>
         [ResponseType(typeof(Staff))]
+        [HttpPost]
         public IHttpActionResult DeleteStaff(int id)
         {
-            Staff staff = db.Staffs.Find(id);
-            if (staff == null)
+            Staff Staff = db.Staffs.Find(id);
+            if (Staff == null)
             {
                 return NotFound();
             }
-            db.Staffs.Remove(staff);
+
+            db.Staffs.Remove(Staff);
             db.SaveChanges();
 
             return Ok();

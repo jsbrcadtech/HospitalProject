@@ -162,13 +162,13 @@ namespace HospitalProject.Controllers
             string url = "parkingspotdata/updateparkingspot/" + id;
             string jsonpayload = jss.Serialize(ParkingSpot);
             HttpContent content = new StringContent(jsonpayload);
+            content.Headers.ContentType.MediaType = "application/json";
             HttpResponseMessage response = client.PostAsync(url, content).Result;
+            //Debug.WriteLine(content);
+
 
             if (response.IsSuccessStatusCode)
             {
-                MultipartFormDataContent requestcontent = new MultipartFormDataContent();
-                response = client.PostAsync(url, requestcontent).Result;
-
                 return RedirectToAction("List");
             }
             else

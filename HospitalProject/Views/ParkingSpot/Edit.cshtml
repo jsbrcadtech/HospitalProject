@@ -18,30 +18,30 @@
 
             <div style="display:none;">
                 @* Passing through the  Parking Spot Id *@
-                <input type="text" name="ParkingSpotId" value="@Model.SelectedParkingSpot.Id" />
+                <input type="number" name="Id" value="@Model.SelectedParkingSpot.Id" />
             </div>
 
             <div>
                 <label>Code:</label>
-                <input type="text" name="ParkingSpotCode" value="@Model.SelectedParkingSpot.Code" />
+                <input type="text" name="Code" value="@Model.SelectedParkingSpot.Code" />
             </div>
 
             <div>
                 <label>Type:</label>
-                <input type="text" name="ParkingSpotType" value="@Model.SelectedParkingSpot.Type" />
+                <input type="text" name="Type" value="@Model.SelectedParkingSpot.Type" />
             </div>
 
             <div>
-                <label>Staff ID:</label>
-                <select name="Id">
-                    @foreach (var staff in Model.StaffsOptions)
+                <select name="StaffId">
+                    @foreach (var staffs in Model.StaffsOptions)
                     {
                         var selected = "";
-                        if (staff.Id == Model.SelectedParkingSpot.StaffId)
+                        if (staffs.Id == Model.SelectedParkingSpot.Id)
                         {
                             selected = "selected";
                         }
-                        <option value="@staff.Id" @selected>@staff.Id</option>
+                        <option value="@staffs.Id" @selected>@staffs.Name</option>
+
                     }
                 </select>
             </div>

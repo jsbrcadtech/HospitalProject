@@ -1,4 +1,4 @@
-﻿@model IEnumerable<HospitalProject.Models.SpecializationsDto>
+﻿@model IEnumerable<HospitalProject.Models.Specialization>
 
 @{
     ViewBag.Title = "Create";
@@ -6,34 +6,34 @@
 
 <h2>Add New Staff</h2>
 
-    <form action="/Staff/Create" method="POST">
-        <div class="field-container">
-            <label>Name:</label>
-            <input type="text" name="Name" class="field-container__input-box" />
-        </div>
+<form action="/Staff/Create" method="POST">
+    <div class="field-container">
+        <label>Name:</label>
+        <input type="text" name="Name" class="" />
+    </div>
 
-        <div class="field-container">
-            <label>Start Time:</label>
-            <input type="text" name="StartTime" class="field-container__input-box" />
-        </div>
+    <div class="field-container">
+        <label>Start Time:</label>
+        <input type="text" name="StartTime" class="" />
+    </div>
 
-        <div class="field-container">
-            <label>End Time:</label>
-            <input type="text" name="EndTime" class="field-container__input-box" />
-        </div>
+    <div class="field-container">
+        <label>End Time:</label>
+        <input type="text" name="EndTime" class="" />
+    </div>
 
-        <div>
-            <label>Specialization:</label>
-            <select name="Name">
-                @foreach (var specializations in Model)
-                {
+    <div>
+        <label>Specialization:</label>
+        <select name="SpecializationId">
+            @foreach (var specializations in Model)
+            {
                 <option value="@specializations.Id">@specializations.Name</option>
-                    
-                }
-            </select>
-        </div>
 
-        <div><input type="submit" value="Add Staff" /></div>
-    </form>
+            }
+        </select>
+    </div>
+
+    <div><input type="submit" value="Add Staff" /></div>
+</form>
 
 

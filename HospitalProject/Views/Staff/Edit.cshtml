@@ -1,5 +1,6 @@
 ﻿@model HospitalProject.Models.ViewModels.UpdateStaff
 
+
 @{
     ViewBag.Title = "Edit";
 }
@@ -29,6 +30,17 @@
             <div>
                 <label>End Time:</label>
                 <input type="datetime" name="EndTime" value="@Model.SelectedStaff.EndTime" />
+            </div>
+
+            <div>
+                <label>Specialization:</label>
+                <select name="SpecializationId">
+                    @foreach (var specializations in Model.SpecializationsDto)
+                    {
+                        <option value="@Model.SpecializationsDto.">@Model.SelectedStaff.SpecializationId</option>
+
+                    }
+                </select>
             </div>
 
         </div>

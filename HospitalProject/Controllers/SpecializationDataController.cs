@@ -20,6 +20,11 @@ namespace HospitalProject.Controllers
             return View(db.Specializations.ToList());
         }
 
+        public List<HospitalProject.Models.Specialization> List() //Had to create this method to solve the problem my StaffDataController and StaffController 
+        {
+            return db.Specializations.ToList();
+        }
+
         // GET: Specializations/Details/5
         public ActionResult Details(int? id)
         {

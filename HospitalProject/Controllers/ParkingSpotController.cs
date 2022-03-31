@@ -14,19 +14,14 @@ namespace HospitalProject.Controllers
 {
     public class ParkingSpotController : Controller
     {
+
         private static readonly HttpClient client;
         private JavaScriptSerializer jss = new JavaScriptSerializer();
 
         static ParkingSpotController()
         {
-            HttpClientHandler handler = new HttpClientHandler()
-                {
-                    AllowAutoRedirect = false,
-                    //cookies are manually set in RequestHeader
-                    UseCookies = false
-                };
-                client = new HttpClient(handler);
-                client.BaseAddress = new Uri("https://localhost:44397/api/");
+            client = new HttpClient();
+            client.BaseAddress = new Uri("https://localhost:44397/api/");
         }
 
         /// <summary>
@@ -104,12 +99,10 @@ namespace HospitalProject.Controllers
 
             string url = "staffdata/liststaffs";
             HttpResponseMessage response = client.GetAsync(url).Result;
-            IEnumerable<StaffsDto> StaffOptions = response.Content.ReadAsAsync<IEnumerable<StaffsDto>>().Result;
+            IEnumerable<StaffsDto> StaffsOptions = response.Content.ReadAsAsync<IEnumerable<StaffsDto>>().Result;
 
-            return View(StaffOptions);
+            return View(StaffsOptions);
         }
-
-
 
         //GET: ParkingSpot/Create
         [HttpPost]
@@ -126,7 +119,7 @@ namespace HospitalProject.Controllers
             //Debug.WriteLine(jsonpayload);
 
             HttpContent content = new StringContent(jsonpayload);
-            //content.Headers.ContentType.MediaType = "application/json";
+            content.Headers.ContentType.MediaType = "application/json";
 
             HttpResponseMessage response = client.PostAsync(url, content).Result;
             if (response.IsSuccessStatusCode)

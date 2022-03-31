@@ -41,7 +41,8 @@ namespace HospitalProject.Controllers
                 Id = s.Id,
                 Name = s.Name,
                 StartTime = s.StartTime,
-                EndTime = s.EndTime
+                EndTime = s.EndTime,
+                SpecializationId = s.SpecializationId
             }));
             return Ok(StaffsDtos);
         }
@@ -170,12 +171,12 @@ namespace HospitalProject.Controllers
         [ResponseType(typeof(Staff))]
         public IHttpActionResult DeleteStaff(int id)
         {
-            Staff Staff = db.Staffs.Find(id);
-            if (Staff == null)
+            Staff staff = db.Staffs.Find(id);
+            if (staff == null)
             {
                 return NotFound();
             }
-            db.Staffs.Remove(Staff);
+            db.Staffs.Remove(staff);
             db.SaveChanges();
 
             return Ok();

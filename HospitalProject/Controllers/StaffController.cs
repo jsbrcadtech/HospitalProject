@@ -99,14 +99,15 @@ namespace HospitalProject.Controllers
         // GET: Staff/New
         public ActionResult New()
         {
-            //information about all specializations in the system.
-            //GET api/specializationdata/listspecializations
 
-            string url = "specializationdata/listspecializations";
-            HttpResponseMessage response = client.GetAsync(url).Result;
-            IEnumerable<SpecializationsDto> SpecializationOptions = response.Content.ReadAsAsync<IEnumerable<SpecializationsDto>>().Result;
+            SpecializationsController controller = new SpecializationsController();
+            IEnumerable<Specialization> specializations = controller.List(); // Instanciate a new object of SpecializationsController to be able to list Specializations for Staff/Create
 
-            return View(SpecializationOptions);
+            // No WEB API Controller for SpecializationDataController so it's conencting to DB in a different way 
+            //"return View(db.Specializations.ToList()) - Located in the SpecializationsController"
+
+
+            return View(specializations);
         }
 
         //GET: Staff/Create
@@ -121,6 +122,8 @@ namespace HospitalProject.Controllers
             string url = "staffdata/addstaff";
 
             string jsonpayload = jss.Serialize(Staff);
+            //Debug.WriteLine(jsonpayload);
+
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";
 
@@ -146,14 +149,9 @@ namespace HospitalProject.Controllers
             StaffsDto SelectedStaff = response.Content.ReadAsAsync<StaffsDto>().Result;
             ViewModel.SelectedStaff = SelectedStaff;
 
- 
 
-
-            // all specializations to choose from when updating this Staff
-            //the existing staff information
-            url = "specialization/listspecializations/";
-            response = client.GetAsync(url).Result;
-            IEnumerable<SpecializationsDto> SpecializationOptions = response.Content.ReadAsAsync<IEnumerable<SpecializationsDto>>().Result;
+            SpecializationsController controller = new SpecializationsController();
+            IEnumerable<Specialization> specializations = controller.List();
 
             return View(ViewModel);
         }

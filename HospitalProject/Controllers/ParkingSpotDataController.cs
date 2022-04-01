@@ -172,7 +172,7 @@ namespace HospitalProject.Controllers
         /// HEADER: 404 (NOT FOUND)
         /// </returns>
         /// <example>
-        /// DELETE: api/ParkingSpotData/DeleteParkingSpot/6
+        /// POST: api/ParkingSpotData/DeleteParkingSpot/6
         /// FORM DATA: (empty)
         /// </example>
         [ResponseType(typeof(ParkingSpot))]

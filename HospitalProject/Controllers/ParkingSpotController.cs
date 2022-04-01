@@ -92,6 +92,7 @@ namespace HospitalProject.Controllers
         }
 
         // GET: ParkingSpot/New
+        [Authorize]
         public ActionResult New()
         {
             //information about all staffs in the system.
@@ -104,8 +105,9 @@ namespace HospitalProject.Controllers
             return View(StaffsOptions);
         }
 
-        //GET: ParkingSpot/Create
+        //POST: ParkingSpot/Create
         [HttpPost]
+        [Authorize]
         public ActionResult Create(ParkingSpot ParkingSpot)
         {
             GetApplicationCookie();//get ParkingSpot credentials
@@ -133,6 +135,7 @@ namespace HospitalProject.Controllers
         }
 
         // GET: ParkingSpot/Edit/6
+        [Authorize]
         public ActionResult Edit(int id)
         {
             UpdateParkingSpot ViewModel = new UpdateParkingSpot();
@@ -156,6 +159,7 @@ namespace HospitalProject.Controllers
 
         // POST: ParkingSpot/Update/6
         [HttpPost]
+        [Authorize]
         public ActionResult Update(int id, ParkingSpot ParkingSpot)
         {
             GetApplicationCookie();//get token credentials
@@ -178,6 +182,7 @@ namespace HospitalProject.Controllers
         }
 
         // GET: ParkingSpot/Delete/5
+        [Authorize]
         public ActionResult DeleteConfirm(int id)
         {
             string url = "parkingspotdata/findparkingspot/" + id;
@@ -188,6 +193,7 @@ namespace HospitalProject.Controllers
 
         // POST: ParkingSpot/Delete/5
         [HttpPost]
+        [Authorize]
         public ActionResult Delete(int id)
         {
             GetApplicationCookie(); //Gets authentication token credentials 

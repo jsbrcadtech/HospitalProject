@@ -105,8 +105,7 @@ namespace HospitalProject.Controllers
         }
 
         // GET: Staff/New
-
-        
+        [Authorize]
         public ActionResult New()
         {
 
@@ -123,6 +122,7 @@ namespace HospitalProject.Controllers
 
         //Post: Staff/Create
         [HttpPost]
+        [Authorize]
         public ActionResult Create(Staff Staff)
         {
             GetApplicationCookie();//get user credentials
@@ -150,6 +150,7 @@ namespace HospitalProject.Controllers
         }
 
         // GET: Staff/Edit/3
+        [Authorize]
         public ActionResult Edit(int id)
         {
             UpdateStaff ViewModel = new UpdateStaff();
@@ -173,6 +174,7 @@ namespace HospitalProject.Controllers
 
         // POST: Staff/Update/3
         [HttpPost]
+        [Authorize]
         public ActionResult Update(int id, Staff Staff)
         {
             GetApplicationCookie();//get token credentials
@@ -194,6 +196,7 @@ namespace HospitalProject.Controllers
         }
 
         // GET: Staff/Delete/3
+        [Authorize]
         public ActionResult DeleteConfirm(int id)
         {
             string url = "staffdata/findstaff/" + id;
@@ -204,6 +207,7 @@ namespace HospitalProject.Controllers
 
         // POST: Staff/Delete/3
         [HttpPost]
+        [Authorize]
         public ActionResult Delete(int id)
         {
             GetApplicationCookie(); //Gets authentication token credentials 

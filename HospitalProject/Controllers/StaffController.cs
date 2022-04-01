@@ -87,6 +87,14 @@ namespace HospitalProject.Controllers
             
             ViewModel.SelectedStaff = SelectedStaff;
 
+            //send a request to gather information about announcements created by a particular staff
+
+            url = "AnnouncementData/ListAnnouncementsForStaff/" + id;
+            response = client.GetAsync(url).Result;
+            IEnumerable<AnnouncementDto> relatedannouncements = response.Content.ReadAsAsync<IEnumerable<AnnouncementDto>>().Result;
+
+            ViewModel.RelatedAnnouncements = relatedannouncements;
+
             return View(ViewModel);
 
         }

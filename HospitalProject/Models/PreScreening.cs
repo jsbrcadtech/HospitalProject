@@ -12,6 +12,7 @@ namespace HospitalProject.Models
         [Key]
         public int Id { get; set; }
         public int VaccinationStatus { get; set; }
+        public DateTime CreatedAt { get; set; }
 
         // A prescreening is attached to one patient
         // A patient can have many prescreenings

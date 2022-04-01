@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>PreScreening Form</h2>
+<form action="/PreScreening/Create" method="post">
+    <div>
+        <input type="checkbox" name="VaccinationStatus" value="1" />
+        <label>Please Declare that you have been vaccinated</label>
+    </div>
+    <div>
+        <label>Vaccinated At:</label>
+        <input type="text" name="CreatedAt" />
+    </div>
+    <div>
+        <label>Patient Name:</label>
+        <input type="number" name="PatientId" />
+    </div>
+    <div>
+        <input type="submit" value="Submit Form" />
+    </div>
+</form>

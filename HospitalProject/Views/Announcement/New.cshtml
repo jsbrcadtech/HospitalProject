@@ -1,0 +1,37 @@
+﻿@model IEnumerable<HospitalProject.Models.StaffsDto>
+@{
+    ViewBag.Title = "New";
+}
+
+<a href="/Announcement/List">Cancel</a>
+
+<h2>Create a new Announcement</h2>
+<form action="/Announcement/Create" method="POST">
+    <div>
+        <label>Title:</label><input type="text" name="Title" />
+    </div>
+    <div>
+        <label>Description:</label><input type="text" name="Description" />
+    </div>
+    <div>
+        <label>PSA Status:</label>
+        <input type="checkbox" name="IsPSA" value="true" />
+    </div>
+    <div>
+        <label>Url:</label><input type="text" name="Url" />
+    </div>
+    <div>
+        <label>Staff Name:</label>
+        <select name="StaffId">
+            @foreach (var staff in Model)
+            {
+                <option value="@staff.Id">@staff.Name</option>
+
+            }
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Add Announcement" />
+    </div>
+</form>
+

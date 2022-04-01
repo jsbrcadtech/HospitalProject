@@ -1,0 +1,43 @@
+﻿@model HospitalProject.Models.ViewModels.UpdateAnnouncement
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<a href="/Announcement/List">Go Back to List of Announcements</a>
+
+<h2>Update Announcement</h2>
+
+<form action="/Announcement/Update/@Model.SelectedAnnouncement.Id" method="post">
+    <div>
+        <label for="Title">Title:</label>
+        <input id="Title" type="text" name="Title" value="@Model.SelectedAnnouncement.Title" />
+    </div>
+    <div>
+        <label for="Description">Description:</label>
+        <input id="Description" type="text" name="Description" value="@Model.SelectedAnnouncement.Description" />
+    </div>
+    <div>
+        <label>PSA Status:</label>
+        <input type="checkbox" name="IsPSA" value="true" @(Model.SelectedAnnouncement.IsPSA ? "checked" : "")  />
+    </div>
+    <div>
+        <label for="Url">Url:</label>
+        <input id="Url" type="text" name="Url" value="@Model.SelectedAnnouncement.Url" />
+    </div>
+    <div>
+        <label>Staff Name:</label>
+        <select name="StaffId">
+            @foreach (var staff in Model.StaffOptions)
+            {
+                <option value="@staff.Id">@staff.Name</option>
+
+            }
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Update Announcement" />
+    </div>
+</form>
+
+

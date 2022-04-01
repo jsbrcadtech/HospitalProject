@@ -1,6 +1,6 @@
 ﻿using HospitalProject.Models;
+using HospitalProject.Models.Dto;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 
@@ -13,8 +13,19 @@ namespace HospitalProject.Controllers
 
         [Route("")]
         [HttpPost]
-        public IHttpActionResult Add(Inventory inventory)
+        public IHttpActionResult Add(InventoryDto dto)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var inventory = new Inventory
+            {
+                Name = dto.Name,
+                BaseQuantity = dto.BaseQuantity,
+            };
+
             _db.Inventories.Add(inventory);
 
             var ledger = new InventoryLedger()
@@ -28,14 +39,36 @@ namespace HospitalProject.Controllers
 
             _db.SaveChanges();
 
-            return Created($"/api/inventory/{inventory.Id}", inventory);
+            return Created($"/api/inventory/{dto.Id}", dto);
         }
 
         [Route("")]
         [HttpGet]
-        public IHttpActionResult GetAll()
+        public IHttpActionResult GetAll(
+            string searchKey = null,
+            int pageNo = 1,
+            int pageSize = 10)
         {
-            return Ok(_db.Inventories);
+            var item = _db.Inventories.AsQueryable();
+
+            var count = _db.Inventories.Count();
+
+            if (searchKey != null)
+            {
+                item = item.Where(i => i.Name.Contains(searchKey));
+                count = _db.Inventories.Where(i => i.Name.Contains(searchKey)).Count();
+            }
+
+            item = item.OrderBy(i => i.Id).Skip((pageNo - 1) * pageSize).Take(pageSize);
+
+            var result = new PagedDto()
+            {
+                Inventories = item.ToList(),
+                PageSize = pageSize,
+                Total = count
+            };
+
+            return Ok(result);
         }
 
         [Route("{id:int}")]
@@ -66,6 +99,11 @@ namespace HospitalProject.Controllers
             }
 
             inventory.BaseQuantity += ledger.Delta;
+
+            if (inventory.BaseQuantity < 0)
+            {
+                return BadRequest("Base quantity cannot be less than 0.");
+            }
 
             ledger.InventoryId = id;
             ledger.CreationDate = DateTime.Now;

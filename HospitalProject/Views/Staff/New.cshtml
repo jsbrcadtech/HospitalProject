@@ -1,4 +1,5 @@
-﻿@model IEnumerable<HospitalProject.Models.Specialization>
+﻿@model IEnumerable<HospitalProject.Models.SpecializationsDto>
+
 
 @{
     ViewBag.Title = "Create";
@@ -13,13 +14,23 @@
     </div>
 
     <div class="field-container">
+        <label>Start Date:</label>
+        <input type="date" name="StartTime" class="" />
+    </div>
+
+    <div class="field-container">
         <label>Start Time:</label>
-        <input type="text" name="StartTime" class="" />
+        <input type="time" name="StartTime" class="" />
+    </div>
+
+    <div class="field-container">
+        <label>End Date:</label>
+        <input type="date" name="EndTime" class="" />
     </div>
 
     <div class="field-container">
         <label>End Time:</label>
-        <input type="text" name="EndTime" class="" />
+        <input type="time" name="EndTime" class="" />
     </div>
 
     <div>

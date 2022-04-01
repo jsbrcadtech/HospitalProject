@@ -97,20 +97,23 @@ namespace HospitalProject.Controllers
         }
 
         // GET: Staff/New
+
+        
         public ActionResult New()
         {
 
-            SpecializationsController controller = new SpecializationsController();
-            IEnumerable<Specialization> specializations = controller.List(); // Instanciate a new object of SpecializationsController to be able to list Specializations for Staff/Create
+            //information about all specializations in the system.
+            //GET: api/specialization
 
-            // No WEB API Controller for SpecializationDataController so it's conencting to DB in a different way 
-            //"return View(db.Specializations.ToList()) - Located in the SpecializationsController"
+            string url = "specialization/";
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            IEnumerable<SpecializationsDto> SpecializationsOptions = response.Content.ReadAsAsync<IEnumerable<SpecializationsDto>>().Result;
 
-
-            return View(specializations);
+            return View(SpecializationsOptions);
         }
+        
 
-        //GET: Staff/Create
+        //Post: Staff/Create
         [HttpPost]
         public ActionResult Create(Staff Staff)
         {
@@ -141,11 +144,23 @@ namespace HospitalProject.Controllers
         // GET: Staff/Edit/3
         public ActionResult Edit(int id)
         {
-            string url = "staffdata/findstaffdata/" + id;
+            UpdateStaff ViewModel = new UpdateStaff();
+
+            //the existing Staff information
+            string url = "Staffdata/findstaff/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             StaffsDto SelectedStaff = response.Content.ReadAsAsync<StaffsDto>().Result;
+            ViewModel.SelectedStaff = SelectedStaff;
 
-            return View(SelectedStaff);
+            // all specializations to choose from when updating this staff
+            //the existing staff information
+            url = "specialization/";
+            response = client.GetAsync(url).Result;
+            IEnumerable<SpecializationsDto> SpecializationsOptions = response.Content.ReadAsAsync<IEnumerable<SpecializationsDto>>().Result;
+
+            ViewModel.SpecializationsOptions = SpecializationsOptions;
+
+            return View(ViewModel);
         }
 
         // POST: Staff/Update/3

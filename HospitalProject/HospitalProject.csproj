@@ -189,7 +189,7 @@
     <Compile Include="Controllers\ParkingSpotDataController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\PatientDataController.cs" />
-    <Compile Include="Controllers\SpecializationController.cs" />
+    <Compile Include="Controllers\SpecializationsController.cs" />
     <Compile Include="Controllers\SpecializationDataController.cs" />
     <Compile Include="Controllers\StaffController.cs" />
     <Compile Include="Controllers\StaffDataController.cs" />
@@ -232,6 +232,8 @@
     <None Include="jsondata\parkingspot.json" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Properties\serviceDependencies.json" />
+    <Content Include="Properties\serviceDependencies.local.json" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\common\service.js" />
     <Content Include="Scripts\inventory\add.js" />

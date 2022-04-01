@@ -21,9 +21,9 @@ namespace HospitalProject.Controllers
 
         [Route("")]
         [HttpGet]
-        public IHttpActionResult GetAll()
+        public IEnumerable<Specialization> GetAll()
         {
-            return Ok(_db.Specializations);
+            return _db.Specializations;
         }
 
         /// <summary>

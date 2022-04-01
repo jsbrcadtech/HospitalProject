@@ -102,8 +102,8 @@ namespace HospitalProject.Controllers
         public ActionResult New()
         {
 
-            SpecializationsController controller = new SpecializationsController();
-            IEnumerable<Specialization> specializations = controller.List(); // Instanciate a new object of SpecializationsController to be able to list Specializations for Staff/Create
+            SpecializationDataController controller = new SpecializationDataController();
+            IEnumerable<Specialization> specializations = controller.GetAll(); // Instanciate a new object of SpecializationsController to be able to list Specializations for Staff/Create
 
             // No WEB API Controller for SpecializationDataController so it's conencting to DB in a different way 
             //"return View(db.Specializations.ToList()) - Located in the SpecializationsController"

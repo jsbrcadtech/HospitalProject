@@ -24,4 +24,14 @@ namespace HospitalProject.Models
         public int StaffId { get; set; }
         public virtual Staff Staffs { get; set; }
     }
+
+    public class AnnouncementDto
+    {
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public bool IsPSA { get; set; }
+        public string Url { get; set; }
+        public string Name { get; set; }
+    }
 }

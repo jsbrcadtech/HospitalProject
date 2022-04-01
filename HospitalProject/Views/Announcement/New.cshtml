@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "New";
+}
+
+<a href="/Announcement/List">Cancel</a>
+
+<h2>Create a new Announcement</h2>
+<form action="/Announcement/Create" method="POST">
+    <div>
+        <label>Title:</label><input type="text" name="Title" />
+    </div>
+    <div>
+        <label>Description:</label><input type="text" name="Description" />
+    </div>
+    <div>
+        <label>PSA:</label><input type="text" name="IsPSA" />
+    </div>
+    <div>
+        <label>Url:</label><input type="text" name="Url" />
+    </div>
+    <div>
+        <label>Staff Name:</label><input type="number" name="StaffId" />
+    </div>
+    <div>
+        <input type="submit" value="Add Announcement" />
+    </div>
+</form>
+

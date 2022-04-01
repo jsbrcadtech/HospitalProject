@@ -1,0 +1,19 @@
+﻿@model HospitalProject.Models.AnnouncementDto
+@{
+    ViewBag.Title = "Details";
+}
+
+<div><a href="/Announcement/List">Go Back to List of Announcements</a></div>
+<div>
+    <a href="/Announcement/Edit/@Model.Id">Update Announcement</a>
+</div>
+<div>
+    <a href="/Announcement/DeleteConfirm/@Model.Id">Delete Announcement</a>
+</div>
+<h2>@Model.Title</h2>
+<div>Description: @Model.Description</div>
+<div>PSA: @Model.IsPSA</div>
+<div>URL: @Model.Url</div>
+<div>Staff Name: @Model.Name</div>
+
+

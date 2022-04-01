@@ -1,0 +1,37 @@
+﻿@model HospitalProject.Models.AnnouncementDto
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<a href="/Announcement/List">Go Back to List of Announcements</a>
+
+<h2>Update Announcement</h2>
+
+<form action="/Announcement/Update/@Model.Id" method="post">
+    <div>
+        <label for="Title">Title:</label>
+        <input id="Title" type="text" name="Title" value="@Model.Title" />
+    </div>
+    <div>
+        <label for="Description">Description:</label>
+        <input id="Description" type="text" name="Description" value="@Model.Description"/>
+    </div>
+    <div>
+        <label for="IsPSA">PSA:</label>
+        <input id="IsPSA" type="text" name="IsPSA" value="@Model.IsPSA" />
+    </div>
+    <div>
+        <label for="Url">Url:</label>
+        <input id="Url" type="text" name="Url" value="@Model.Url" />
+    </div>
+    <div>
+        <label for="StaffId">Staff Name:</label>
+        <input id="StaffId" type="number" name="Name" value="@Model.Name" />
+    </div>
+    <div>
+        <input type="submit" value="Add Announcement" />
+    </div>
+</form>
+
+

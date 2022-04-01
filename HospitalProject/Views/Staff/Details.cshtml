@@ -26,3 +26,12 @@
     Specialization Id: @Model.SelectedStaff.SpecializationId
 </div>
 
+<div style="margin-top:100px;">
+    <h3>Announcements related to the Staff</h3>
+    @foreach (var announcement in Model.RelatedAnnouncements)
+    {
+        <a href="/Announcement/Details/@announcement.Id">@announcement.Title</a><br />
+        <hr />
+    }
+</div>
+

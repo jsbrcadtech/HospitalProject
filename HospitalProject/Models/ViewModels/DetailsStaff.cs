@@ -11,5 +11,6 @@ namespace HospitalProject.Models.ViewModels
         //Parking spots that are assigned to this Staff  
         public IEnumerable<ParkingSpotDto> RelatedParkingSpots { get; set; }
         public IEnumerable<SpecializationsDto> RelatedSpecializations { get; set; }
+        public IEnumerable<AnnouncementDto> RelatedAnnouncements { get; set; }
     }
 }

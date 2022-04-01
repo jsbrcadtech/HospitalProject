@@ -36,6 +36,27 @@ namespace HospitalProject.Controllers
             return AnnouncementDtos;
         }
 
+        //"AnnouncementData/FindAnnouncementsForStaff/" + id
+
+        // GET: api/AnnouncementData/ListAnnouncementsForStaff/5
+        [HttpGet]
+        public IEnumerable<AnnouncementDto> ListAnnouncementsForStaff(int id)
+        {
+            List<Announcement> Announcements = db.Announcements.Where(a=>a.StaffId==id).ToList();
+            List<AnnouncementDto> AnnouncementDtos = new List<AnnouncementDto>();
+
+            Announcements.ForEach(a => AnnouncementDtos.Add(new AnnouncementDto()
+            {
+                Id = a.Id,
+                Title = a.Title,
+                Description = a.Description,
+                IsPSA = a.IsPSA,
+                Url = a.Url,
+                Name = a.Staffs.Name
+            }));
+            return AnnouncementDtos;
+        }
+
         // GET: api/AnnouncementData/FindAnnouncement/5
         [ResponseType(typeof(Announcement))]
         [HttpGet]

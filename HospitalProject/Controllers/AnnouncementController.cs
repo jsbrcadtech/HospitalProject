@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Diagnostics;
 using HospitalProject.Models;
+using HospitalProject.Models.ViewModels;
 using System.Web.Script.Serialization;
 
 namespace HospitalProject.Controllers
@@ -68,7 +69,14 @@ namespace HospitalProject.Controllers
         // GET: Announcement/New
         public ActionResult New()
         {
-            return View();
+            //information about all staffs in the system
+            //Get: api/StaffData/ListStaffs
+
+            string url = "staffdata/liststaffs";
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            IEnumerable<StaffsDto> StaffsOptions = response.Content.ReadAsAsync<IEnumerable<StaffsDto>>().Result;
+
+            return View(StaffsOptions);
         }
 
         // POST: Announcement/Create
@@ -101,10 +109,24 @@ namespace HospitalProject.Controllers
         // GET: Announcement/Edit/5
         public ActionResult Edit(int id)
         {
+            UpdateAnnouncement ViewModel = new UpdateAnnouncement();
+
+            //already existing selected announcement details
+
+
             string url = "AnnouncementData/FindAnnouncement/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             AnnouncementDto selectedannouncement = response.Content.ReadAsAsync<AnnouncementDto>().Result;
-            return View(selectedannouncement);
+            ViewModel.SelectedAnnouncement = selectedannouncement;
+
+            //all staffs to choose from when updating the announcement
+
+            url = "StaffData/liststaffs";
+            response = client.GetAsync(url).Result;
+            IEnumerable<StaffsDto> staffoptions = response.Content.ReadAsAsync<IEnumerable<StaffsDto>>().Result;
+            ViewModel.StaffOptions = staffoptions;
+
+            return View(ViewModel);
         }
 
         // POST: Announcement/Update/5

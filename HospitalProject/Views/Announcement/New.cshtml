@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<HospitalProject.Models.StaffsDto>
 @{
     ViewBag.Title = "New";
 }
@@ -14,13 +14,21 @@
         <label>Description:</label><input type="text" name="Description" />
     </div>
     <div>
-        <label>PSA:</label><input type="text" name="IsPSA" />
+        <label>PSA Status:</label>
+        <input type="checkbox" name="IsPSA" value="true" />
     </div>
     <div>
         <label>Url:</label><input type="text" name="Url" />
     </div>
     <div>
-        <label>Staff Name:</label><input type="number" name="StaffId" />
+        <label>Staff Name:</label>
+        <select name="StaffId">
+            @foreach (var staff in Model)
+            {
+                <option value="@staff.Id">@staff.Name</option>
+
+            }
+        </select>
     </div>
     <div>
         <input type="submit" value="Add Announcement" />

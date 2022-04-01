@@ -17,8 +17,6 @@ namespace HospitalProject.Controllers
         /// </summary>
         /// <returns>
         /// HEADER: 200 (OK)
-
-
         [Route("")]
         [HttpGet]
         public IEnumerable<Specialization> GetAll()
@@ -27,7 +25,7 @@ namespace HospitalProject.Controllers
         }
 
         /// <summary>
-        /// Returns specialization by its primary ket
+        /// Returns specialization by its primary key
         /// </summary>
         /// <returns>
         /// HEADER: 200 (OK)
@@ -65,6 +63,34 @@ namespace HospitalProject.Controllers
             _db.Specializations.Remove(specializationInDb);
             _db.SaveChanges();
             return Ok();
+        }
+
+        /// <summary>
+        /// Updates a patient in the system
+        /// </summary>
+        /// <param name="Id">Represents the patient id with the primary key</param>
+        /// <param name="Patient">JSON FORM DATA of a ParkingSpot</param>
+        /// <returns>
+        /// HEADER: 204 (Success, No Content Response)
+        [Route("{id:int}")]
+        [HttpPost]
+        public IHttpActionResult UpdateSpecialization(int id, Specialization specialization)
+            
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (id != specialization.Id)
+            {
+                return BadRequest();
+            }
+
+            _db.Entry(specialization).State = System.Data.Entity.EntityState.Modified;
+            _db.SaveChanges();
+            return StatusCode(System.Net.HttpStatusCode.NoContent);
+            
         }
 
     }

@@ -1,126 +1,118 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using HospitalProject.Models;
+using HospitalProject.Models.Dto;
+using System;
 using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using HospitalProject.Models;
+using System.Web.Http;
+using System.Collections.Generic;
+
+
 namespace HospitalProject.Controllers
 {
-    public class PatientsController : Controller
+    [RoutePrefix("api/patient")]
+
+    public class PatientDataController : ApiController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private readonly ApplicationDbContext _db = new ApplicationDbContext();
 
-        // GET: Patients
-        public ActionResult Index()
-        {
-            return View(db.Patients.ToList());
-        }
-
-        // GET: Patients/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Patient patient = db.Patients.Find(id);
-            if (patient == null)
-            {
-                return HttpNotFound();
-            }
-            return View(patient);
-        }
-
-        // GET: Patients/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Patients/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Adds a patient to the system
+        /// </summary>
+        /// <param name="patient">JSON FORM DATA of a Patient</param>
+        /// <returns>
+        /// HEADER: 201 (Created)
+        [Route("")]
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Email,Phone,DateOfBirth")] Patient patient)
+        public IHttpActionResult Add(Patient patient)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.Patients.Add(patient);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return BadRequest(ModelState);
             }
 
-            return View(patient);
+            _db.Patients.Add(patient);
+            _db.SaveChanges();
+            return Created($"/api/patient/{patient.Id}", patient);
         }
 
-        // GET: Patients/Edit/5
-        public ActionResult Edit(int? id)
+        /// <summary>
+        /// Returns all patients in the system
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        [Route("")]
+        [HttpGet]
+        
+        public IEnumerable<Patient> GetAll()
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Patient patient = db.Patients.Find(id);
+            return _db.Patients;
+        }
+
+        /// <summary>
+        /// Returns patient by primary key
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        [Route("{id:int}")]
+        [HttpGet]
+        public IHttpActionResult GetById(int id)
+        {
+            var patient = _db.Patients.SingleOrDefault(i => i.Id == id);
             if (patient == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
-            return View(patient);
+            return Ok(patient);
         }
 
-        // POST: Patients/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Deletes a patient from the system by primary key.
+        /// </summary>
+        /// <param name="Id">The primary key of the ParkingSpot</param>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        [Route("{id:int}")]
+        [HttpDelete]
+        public IHttpActionResult DeletePatient([FromUri] int id)
+        {
+            var patientInDb = _db.Patients.SingleOrDefault(i => i.Id == id);
+            if (patientInDb == null)
+            {
+                return NotFound();
+            }
+
+            _db.Patients.Remove(patientInDb);
+            _db.SaveChanges();
+            return Ok();
+        }
+
+
+        /// <summary>
+        /// Updates a patient in the system
+        /// </summary>
+        /// <param name="Id">Represents the patient id with the primary key</param>
+        /// <param name="Patient">JSON FORM DATA of a ParkingSpot</param>
+        /// <returns>
+        /// HEADER: 204 (Success, No Content Response)
+        [Route("{id:int}")]
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Email,Phone,DateOfBirth")] Patient patient)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(patient).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(patient);
-        }
+        public IHttpActionResult UpdatePatient(int id, Patient patient)
 
-        // GET: Patients/Delete/5
-        public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if (!ModelState.IsValid)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return BadRequest(ModelState);
             }
-            Patient patient = db.Patients.Find(id);
-            if (patient == null)
-            {
-                return HttpNotFound();
-            }
-            return View(patient);
-        }
 
-        // POST: Patients/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Patient patient = db.Patients.Find(id);
-            db.Patients.Remove(patient);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
+            if (id != patient.Id)
             {
-                db.Dispose();
+                return BadRequest();
             }
-            base.Dispose(disposing);
+
+            _db.Entry(patient).State = System.Data.Entity.EntityState.Modified;
+            _db.SaveChanges();
+            return StatusCode(System.Net.HttpStatusCode.NoContent);
+
         }
     }
+
 }

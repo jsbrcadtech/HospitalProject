@@ -191,6 +191,8 @@
     <Compile Include="Controllers\ParkingSpotDataController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\PatientDataController.cs" />
+    <Compile Include="Controllers\PreScreeningController.cs" />
+    <Compile Include="Controllers\PreScreeningDataController.cs" />
     <Compile Include="Controllers\SpecializationsController.cs" />
     <Compile Include="Controllers\SpecializationDataController.cs" />
     <Compile Include="Controllers\StaffController.cs" />
@@ -202,6 +204,10 @@
     <Compile Include="Migrations\202203280044076_initial.cs" />
     <Compile Include="Migrations\202203280044076_initial.Designer.cs">
       <DependentUpon>202203280044076_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204011012521_adding CreatedAt column on prescreening model.cs" />
+    <Compile Include="Migrations\202204011012521_adding CreatedAt column on prescreening model.Designer.cs">
+      <DependentUpon>202204011012521_adding CreatedAt column on prescreening model.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -239,6 +245,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="jsondata\announcement.json" />
+    <Content Include="jsondata\prescreening.json" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -311,6 +318,10 @@
     <Content Include="Views\Announcement\Error.cshtml" />
     <Content Include="Views\Announcement\Edit.cshtml" />
     <Content Include="Views\Announcement\DeleteConfirm.cshtml" />
+    <Content Include="Views\PreScreening\New.cshtml" />
+    <Content Include="Views\PreScreening\Error.cshtml" />
+    <Content Include="Views\PreScreening\Success.cshtml" />
+    <Content Include="Views\PreScreening\Failure.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -333,6 +344,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202203280044076_initial.resx">
       <DependentUpon>202203280044076_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204011012521_adding CreatedAt column on prescreening model.resx">
+      <DependentUpon>202204011012521_adding CreatedAt column on prescreening model.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -204,6 +204,8 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Announcement.cs" />
     <Compile Include="Models\Appointment.cs" />
+    <Compile Include="Models\Dto\InventoryDto.cs" />
+    <Compile Include="Models\Dto\PagedDto.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Inventory.cs" />
     <Compile Include="Models\InventoryLedger.cs" />

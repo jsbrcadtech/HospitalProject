@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "View";
+}
+
+<a href="/ParkingSpot/List">Go back to list</a>
+<br />
+<a href="/ParkingSpot/Edit/@Model.SelectedParkingSpot.Id">Update</a>
+<br />
+<a style="color:darkred;" href="/ParkingSpot/DeleteConfirm/@Model.SelectedParkingSpot.Id">Delete</a>
+<h2>
+    @Model.SelectedParkingSpot.Code
+</h2>
+<div>
+    Parking Spot Type: @Model.SelectedParkingSpot.Type
+</div>
+<div>
+    Staff Id: @Model.SelectedParkingSpot.StaffId
+</div>

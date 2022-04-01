@@ -187,6 +187,14 @@
     <Compile Include="Controllers\InventoryController.cs" />
     <Compile Include="Controllers\InventoryDataController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ParkingSpotController.cs" />
+    <Compile Include="Controllers\ParkingSpotDataController.cs" />
+    <Compile Include="Controllers\PatientController.cs" />
+    <Compile Include="Controllers\PatientDataController.cs" />
+    <Compile Include="Controllers\SpecializationsController.cs" />
+    <Compile Include="Controllers\SpecializationDataController.cs" />
+    <Compile Include="Controllers\StaffController.cs" />
+    <Compile Include="Controllers\StaffDataController.cs" />
     <Compile Include="Controllers\PreScreeningsDataController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -199,6 +207,8 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Announcement.cs" />
     <Compile Include="Models\Appointment.cs" />
+    <Compile Include="Models\Dto\InventoryDto.cs" />
+    <Compile Include="Models\Dto\PagedDto.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Inventory.cs" />
     <Compile Include="Models\InventoryLedger.cs" />
@@ -208,6 +218,10 @@
     <Compile Include="Models\PreScreening.cs" />
     <Compile Include="Models\Specialization.cs" />
     <Compile Include="Models\Staff.cs" />
+    <Compile Include="Models\ViewModels\UpdateStaff.cs" />
+    <Compile Include="Models\ViewModels\DetailsParkingSpot.cs" />
+    <Compile Include="Models\ViewModels\DetailsStaff.cs" />
+    <Compile Include="Models\ViewModels\UpdateParkingSpot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -220,6 +234,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <None Include="jsondata\parkingspot.json" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="jsondata\announcement.json" />
@@ -268,10 +283,27 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\ParkingSpot\List.cshtml" />
+    <Content Include="Views\ParkingSpot\Error.cshtml" />
+    <Content Include="Views\ParkingSpot\New.cshtml" />
+    <Content Include="Views\ParkingSpot\Edit.cshtml" />
+    <Content Include="Views\ParkingSpot\DeleteConfirm.cshtml" />
+    <Content Include="Views\Staff\List.cshtml" />
+    <Content Include="Views\Staff\Error.cshtml" />
+    <Content Include="Views\Staff\Edit.cshtml" />
+    <Content Include="Views\Staff\Details.cshtml" />
+    <Content Include="Views\ParkingSpot\Details.cshtml" />
+    <Content Include="Views\Staff\New.cshtml" />
     <Content Include="Views\Inventory\Index.cshtml" />
     <Content Include="Views\Inventory\Add.cshtml" />
     <Content Include="Views\Inventory\Show.cshtml" />
     <Content Include="Views\Inventory\UpdateLeadger.cshtml" />
+    <Content Include="Views\Specializations\Create.cshtml" />
+    <Content Include="Views\Specializations\Delete.cshtml" />
+    <Content Include="Views\Specializations\Details.cshtml" />
+    <Content Include="Views\Specializations\Edit.cshtml" />
+    <Content Include="Views\Specializations\Index.cshtml" />
+    <Content Include="Views\Staff\DeleteConfirm.cshtml" />
     <Content Include="Views\Announcement\List.cshtml" />
     <Content Include="Views\Announcement\Details.cshtml" />
     <Content Include="Views\Announcement\New.cshtml" />

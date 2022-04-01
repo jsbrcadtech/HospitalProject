@@ -1,0 +1,58 @@
+﻿@model HospitalProject.Models.StaffsDto
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Update Staff</h2>
+<nav>
+    <ul>
+        <li><a href="/Staff/List">Go back to list</a></li>
+        <li><a style="color:darkred;" href="/Staff/DeleteConfirm/@Model.Id">Delete</a></li>
+    </ul>
+</nav>
+
+<form action="/Staff/Update/@Model.Id" method="POST">
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <div>
+                <label>Staff Id</label>
+                <input type="number" name="Id" value="@Model.Id" />
+            </div>
+
+            <div>
+                <label>Name</label>
+                <input type="text" name="Name" value="@Model.Name" />
+            </div>
+
+            <div>
+                <label>Start Date:</label>
+                <input type="date" name="StartTime" value="@Model.StartTime" />
+            </div>
+            <div>
+                <label>Start Time:</label>
+                <input type="time" name="StartTime" value="@Model.StartTime" />
+            </div>
+            <div>
+                <label>End Date:</label>
+                <input type="date" name="StartTime" value="@Model.StartTime" />
+            </div>
+            <div>
+                <label>End Time:</label>
+                <input type="time" name="EndTime" value="@Model.EndTime" />
+            </div>
+
+            <div>
+                <label>Specialization:</label>
+                <input type="number" name="SpecializationId" value="@Model.SpecializationId" />
+            </div>
+
+        </div>
+
+    </div>
+    <div>
+        <input type="submit" value="Update Staff" />
+    </div>
+
+</form>
+

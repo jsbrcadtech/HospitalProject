@@ -1,7 +1,13 @@
 const baseUrl = "/api/inventory";
 
-async function getAllInventories() {
-  return await getRequest(baseUrl);
+async function getAllInventories(searchKey = null, pageNo = 1, pageSize = 10) {
+  let url = `${baseUrl}?pageNo=${pageNo}&pageSize=${pageSize}`;
+
+  if (searchKey !== null) {
+    url += `&searchKey=${searchKey}`;
+  }
+
+  return await getRequest(url);
 }
 
 async function addItemToInventory(newItem) {

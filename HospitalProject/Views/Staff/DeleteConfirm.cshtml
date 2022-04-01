@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+
+<h2>Are you sure you want to delete this Staff?</h2>
+<a href="/Staff/List">Cancel</a>
+<h2>@Model.Name</h2>
+
+<div>Start Time: @Model.StartTime</div>
+<div>End Time @Model.EndTime</div>
+<div>Staff Id: @Model.Id</div>
+<div>Specialization Id: @Model.SpecializationId</div>
+
+<form action="/Staff/Delete/@Model.Id" method="POST">
+    <input type="submit" value="Confirm Delete" />
+</form>

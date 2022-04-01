@@ -1,0 +1,31 @@
+﻿@model IEnumerable<HospitalProject.Models.StaffsDto>
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create a New Parking Spot</h2>
+<form action="/ParkingSpot/Create" method="POST">
+
+    <div class="">
+        <label>Code:</label>
+        <input type="text" name="Code" class="" />
+    </div>
+
+    <div class="">
+        <label>Type</label>
+        <input type="text" name="Type" class="" />
+    </div>
+
+    <div>
+        <label>Staff Id</label>
+        <select name="StaffId">
+            @foreach (var staff in Model)
+            {
+                <option value="@staff.Id">@staff.Id</option>
+            }
+        </select>
+    </div>
+
+    <div><input type="submit" value="Add Parking Spot" /></div>
+</form>

@@ -7,7 +7,15 @@
 
 <h2>Index</h2>
 
-<a href="/inventory/add">Add New Item</a>
+<div style="display: flex;justify-content: space-between;">
+    <a href="/inventory/add">Add New Item</a>
+
+    <input id="searchInput"
+           class="form-control"
+           type="text"
+           name="searchKey"
+           placeholder="search..." />
+</div>
 
 <table class="table">
     <thead>
@@ -19,6 +27,9 @@
     <tbody id="tBody">
     </tbody>
 </table>
+
+<button class="btn" id="btnPrev">Prev</button>
+<button class="btn" id="btnNext">Next</button>
 
 @Scripts.Render("~/Scripts/Common/service.js")
 @Scripts.Render("~/Scripts/Inventory/inventory-service.js")

@@ -26,4 +26,21 @@
     Specialization Id: @Model.SelectedStaff.SpecializationId
 </div>
 
+<div style="margin-top:100px;">
+    <h3>Announcements made by the Staff</h3>
+    @foreach (var announcement in Model.RelatedAnnouncements)
+    {
+        <a href="/Announcement/Details/@announcement.Id">@announcement.Title</a><br />
+        <hr />
+    }
+</div>
+
+<div style="margin-top:100px;">
+    <h3>Parking Spot Authorized for the staff</h3>
+    @foreach (var staff in Model.RelatedParkingSpots)
+    {
+        <a href="/Staff/Details/@staff.Id">@staff.Code</a>
+
+    }
+</div>
 

@@ -1,11 +1,12 @@
-﻿
+﻿@model HospitalProject.Models.ViewModels.DetailsParkingSpot
+
 @{
     ViewBag.Title = "View";
 }
 
 <a href="/ParkingSpot/List">Go back to list</a>
 <br />
-<a href="/ParkingSpot/Edit/@Model.SelectedParkingSpot.Id">Update</a>
+<a href="/ParkingSpot/Edit/@Model.">Update</a>
 <br />
 <a style="color:darkred;" href="/ParkingSpot/DeleteConfirm/@Model.SelectedParkingSpot.Id">Delete</a>
 <h2>
@@ -17,3 +18,5 @@
 <div>
     Staff Id: @Model.SelectedParkingSpot.StaffId
 </div>
+
+

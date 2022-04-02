@@ -95,6 +95,14 @@ namespace HospitalProject.Controllers
 
             ViewModel.RelatedAnnouncements = relatedannouncements;
 
+            //sends a request to gather information about parkingspots associated to a specific staff
+
+            url = "ParkingSpotData/ListParkingSpotsForStaff/" + id;
+            response = client.GetAsync(url).Result;
+            IEnumerable<ParkingSpotDto> RelatedParkingSpots = response.Content.ReadAsAsync<IEnumerable<ParkingSpotDto>>().Result;
+
+            ViewModel.RelatedParkingSpots = RelatedParkingSpots;
+
             return View(ViewModel);
 
         }

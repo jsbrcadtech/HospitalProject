@@ -1,19 +1,22 @@
-﻿
+﻿@model HospitalProject.Models.ParkingSpotDto
+
 @{
     ViewBag.Title = "View";
 }
 
 <a href="/ParkingSpot/List">Go back to list</a>
 <br />
-<a href="/ParkingSpot/Edit/@Model.SelectedParkingSpot.Id">Update</a>
+<a href="/ParkingSpot/Edit/@Model.Id">Update</a>
 <br />
-<a style="color:darkred;" href="/ParkingSpot/DeleteConfirm/@Model.SelectedParkingSpot.Id">Delete</a>
+<a style="color:darkred;" href="/ParkingSpot/DeleteConfirm/@Model.Id">Delete</a>
 <h2>
-    @Model.SelectedParkingSpot.Code
+    @Model.Code
 </h2>
 <div>
-    Parking Spot Type: @Model.SelectedParkingSpot.Type
+    Parking Spot Type: @Model.Type
 </div>
 <div>
-    Staff Id: @Model.SelectedParkingSpot.StaffId
+    Staff Id: @Model.StaffId
 </div>
+
+

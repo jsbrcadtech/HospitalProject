@@ -66,8 +66,6 @@ namespace HospitalProject.Controllers
         // GET: ParkingSpot/Details/6
         public ActionResult Details(int id)
         {
-            DetailsParkingSpot ViewModel = new DetailsParkingSpot();
-
             //objective: communicate with Parking Spot Data Api to retrieve Parking Spot
             //curl https://localhost:44397/api/parkingspotdata/findparkingspot/{id}
 
@@ -81,9 +79,7 @@ namespace HospitalProject.Controllers
             //Debug.WriteLine("Number of parking spots received");
             //Debug.WriteLine(SelectedParkingSpot.Code);
 
-            ViewModel.SelectedParkingSpot = SelectedParkingSpot;
-
-            return View(ViewModel);
+            return View(SelectedParkingSpot);
         }
 
         public ActionResult Error()

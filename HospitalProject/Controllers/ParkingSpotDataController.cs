@@ -49,6 +49,35 @@ namespace HospitalProject.Controllers
         }
 
         /// <summary>
+        /// Gathers information about parking spots associated to a specific staff
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: All Parking Spots in the database that match to a specific Staff
+        /// </returns>
+        /// <param name="id"> ParkingSpot</param>
+        /// <example>
+        /// GET: api/ParkingSpotdata/ListParkingSpotsForStaff/6
+        /// </example>
+        [HttpGet]
+        [ResponseType(typeof(ParkingSpotDto))]
+        public IEnumerable<ParkingSpotDto> ListParkingSpotsForStaff(int id)
+        {
+            //all ParkingSpots that have staffs which match with the ID
+            List<ParkingSpot> ParkingSpots = db.ParkingSpots.Where(p => p.StaffId == id).ToList();
+            List<ParkingSpotDto> ParkingSpotsDtos = new List<ParkingSpotDto>();
+
+            ParkingSpots.ForEach(p => ParkingSpotsDtos.Add(new ParkingSpotDto()
+            {
+                Id = p.Id,
+                Code = p.Code,
+                Type = p.Type,
+                Name = p.Staffs.Name
+            }));
+            return ParkingSpotsDtos;
+        }
+
+        /// <summary>
         /// Returns all parking spots in the system.
         /// </summary>
         /// <returns>

@@ -1,0 +1,13 @@
+# Inventory & Inventory ledgers
+- api to add new item to inventory
+- api to update inventory item
+- api to get all inventory items (supports searh by item name & pagination)
+- api to get item by id
+- api to get ledger entries for an item (supports filter by date range)
+- api to delete item and all ledger entries from inventory
+- api to delete leadger entry for an item
+- async requests from client side using javascript
+- reusable JS methods for API calls
+- reponsive features like search as user types
+- client side validations using html5 and JS
+- server side validations

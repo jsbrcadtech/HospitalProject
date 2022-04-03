@@ -11,19 +11,20 @@ async function handleLoad() {
   const searchInp = document.getElementById("searchInput");
   searchInp.onkeyup = handleSearch;
 
+  // add event listeners to prev, next buttons for pagination
   prevBtn = document.getElementById("btnPrev");
   nextBtn = document.getElementById("btnNext");
-
   prevBtn.onclick = handlePrev;
   nextBtn.onclick = handleNext;
 
+  // get all inventories for list
   await getInventories();
 }
 
 async function getInventories() {
   const res = await getAllInventories(searchKey, pageNo, pageSize);
   totalPages = Math.ceil(res.Total / pageSize);
-  console.log(totalPages);
+
   addDateToPage(res.Inventories);
   updatePrevBtnState();
   updateNextBtnState();
@@ -31,7 +32,11 @@ async function getInventories() {
 
 function addDateToPage(data) {
   const bodyEl = document.getElementById("tBody");
+
+  // clear data from table
   bodyEl.innerHTML = "";
+
+  // add rows for each item in the table
   data.forEach((e) => {
     const trEl = `
         <tr>
@@ -46,8 +51,11 @@ function addDateToPage(data) {
 async function handleSearch(e) {
   e.preventDefault();
   const value = e.target.value;
+
+  // use search key only if there are minimum 3 characters in search input
   searchKey = value.length >= 3 ? value : null;
   pageNo = 1;
+
   await getInventories();
 }
 

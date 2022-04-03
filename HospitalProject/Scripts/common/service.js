@@ -1,3 +1,4 @@
+// method to make get request to provided url
 async function getRequest(url) {
   try {
     const res = await fetch(url);
@@ -9,6 +10,7 @@ async function getRequest(url) {
   }
 }
 
+// method to make post request to provided URL and data
 async function postRequest(url, data) {
   try {
     const res = await fetch(url, {
@@ -25,6 +27,7 @@ async function postRequest(url, data) {
   }
 }
 
+// methoda to make delete request to provided url
 async function deleteRequest(url) {
   try {
     const res = await fetch(url, {

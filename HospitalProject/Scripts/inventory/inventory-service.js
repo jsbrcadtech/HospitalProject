@@ -1,8 +1,10 @@
 const baseUrl = "/api/inventory";
 
 async function getAllInventories(searchKey = null, pageNo = 1, pageSize = 10) {
+  // apply pagination parametes
   let url = `${baseUrl}?pageNo=${pageNo}&pageSize=${pageSize}`;
 
+  // apply search key of not null
   if (searchKey !== null) {
     url += `&searchKey=${searchKey}`;
   }
@@ -21,12 +23,15 @@ async function getInventoryItemById(itemId) {
 
 async function getLedgerForItem(itemId, start, end) {
   let url = `${baseUrl}/${itemId}/ledger`;
+
+  // apply search filter if dates are not null
   if (start && end) {
     url += `?startDate=${start}&endDate=${end}`;
   }
 
   const ledgers = await getRequest(url);
 
+  // update datetime values response to readable format
   ledgers.forEach((l) => {
     const dateTime = new Date(l.CreationDate);
     const date = dateTime.toDateString();

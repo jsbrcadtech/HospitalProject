@@ -1,6 +1,4 @@
 ﻿using HospitalProject.Models;
-using HospitalProject.Models.Dto;
-using System;
 using System.Linq;
 using System.Web.Http;
 using System.Collections.Generic;
@@ -41,7 +39,7 @@ namespace HospitalProject.Controllers
         /// HEADER: 200 (OK)
         [Route("")]
         [HttpGet]
-        
+
         public IEnumerable<Patient> GetAll()
         {
             return _db.Patients;
@@ -94,7 +92,7 @@ namespace HospitalProject.Controllers
         /// <returns>
         /// HEADER: 204 (Success, No Content Response)
         [Route("{id:int}")]
-        [HttpPost]
+        [HttpPut]
         public IHttpActionResult UpdatePatient(int id, Patient patient)
 
         {
@@ -111,8 +109,6 @@ namespace HospitalProject.Controllers
             _db.Entry(patient).State = System.Data.Entity.EntityState.Modified;
             _db.SaveChanges();
             return StatusCode(System.Net.HttpStatusCode.NoContent);
-
         }
     }
-
 }

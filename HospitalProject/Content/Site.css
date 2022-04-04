@@ -28,3 +28,12 @@ textarea {
     color: red;
     font: bold;
 }
+
+.err-msg {
+    color: red;
+    font: bold
+}
+
+.hidden {
+    display: none;
+}

@@ -184,6 +184,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AnnouncementController.cs" />
     <Compile Include="Controllers\AnnouncementDataController.cs" />
+    <Compile Include="Controllers\AppointmentController.cs" />
+    <Compile Include="Controllers\AppointmentDataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventoryController.cs" />
     <Compile Include="Controllers\InventoryDataController.cs" />
@@ -214,6 +216,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Announcement.cs" />
     <Compile Include="Models\Appointment.cs" />
+    <Compile Include="Models\Dto\AppointmentDto.cs" />
     <Compile Include="Models\Dto\InventoryDto.cs" />
     <Compile Include="Models\Dto\PagedDto.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -332,9 +335,11 @@
     <Content Include="Views\Patients\Details.cshtml" />
     <Content Include="Views\Patients\Edit.cshtml" />
     <Content Include="Views\Patients\Index.cshtml" />
+    <Content Include="Views\Appointment\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Scripts\appointment\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

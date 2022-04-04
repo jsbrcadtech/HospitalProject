@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Add</h2>
+
+<form>
+    <div class="form-group">
+        <label class="control-label" for="specializationId">Select specialization: </label>
+        <select class="form-control" name="specializationId" id="specializationId"></select>
+        <p id="staffErr" class="hidden err-msg"></p>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label" for="staffId">Select doctor: </label>
+        <select class="form-control" name="staffId" id="staffId" disabled></select>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label" for="appointmentDateTime">Date & Time:</label>
+        <select class="form-control" name="appointmentDateTime" id="appointmentDateTime" disabled></select>
+    </div>
+
+    <button class="btn btn-primary" type="submit">Schedule Appointment</button>
+</form>
+
+@Scripts.Render("~/Scripts/Common/service.js")
+@Scripts.Render("~/Scripts/appointment/appointment-service.js")
+@Scripts.Render("~/Scripts/appointment/add.js")

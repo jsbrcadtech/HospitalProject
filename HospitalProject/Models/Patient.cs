@@ -14,7 +14,6 @@ namespace HospitalProject.Models
         public string Email { get; set; }
         public string Phone { get; set; }
         public DateTime DateOfBirth { get; set; }
-        public virtual ICollection<PreScreening> PreScreening { get; set; }
     }
 
     public class PatientDto

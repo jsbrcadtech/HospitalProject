@@ -325,17 +325,17 @@
     <Content Include="Views\PreScreening\Error.cshtml" />
     <Content Include="Views\PreScreening\Success.cshtml" />
     <Content Include="Views\PreScreening\Failure.cshtml" />
-    <Content Include="Views\Patients\Create.cshtml" />
-    <Content Include="Views\Patients\Delete.cshtml" />
-    <Content Include="Views\Patients\Details.cshtml" />
-    <Content Include="Views\Patients\Edit.cshtml" />
-    <Content Include="Views\Patients\Index.cshtml" />
+    <Content Include="Views\Patient\Index.cshtml" />
     <Content Include="Views\Appointment\Add.cshtml" />
     <Content Include="Views\Specialization\Details.cshtml" />
     <Content Include="Views\Specialization\Edit.cshtml" />
     <Content Include="Views\Specialization\Index.cshtml" />
     <Content Include="Views\Specialization\New.cshtml" />
     <Content Include="Views\Specialization\Error.cshtml" />
+    <Content Include="Views\Patient\New.cshtml" />
+    <Content Include="Views\Patient\Details.cshtml" />
+    <Content Include="Views\Patient\Error.cshtml" />
+    <Content Include="Views\Patient\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

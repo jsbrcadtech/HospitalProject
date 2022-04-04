@@ -1,0 +1,31 @@
+﻿@model HospitalProject.Models.Patient
+
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>New</h2>
+
+<form action="/patient/create" method="post">
+    <div class="form-group">
+        <label class="control-label">Name</label>
+        <input class="form-control" type="text" name="name" value="" required />
+    </div>
+    <div class="form-group">
+        <label class="control-label">Email</label>
+        <input class="form-control" type="email" name="email" value="" required />
+    </div>
+    <div class="form-group">
+        <label class="control-label">Phone</label>
+        <input class="form-control" type="number" name="phone" value="" required />
+    </div>
+    <div class="form-group">
+        <label class="control-label">Date of Birth</label>
+        <input class="form-control" type="date" name="dateOfBirth" value="" required />
+    </div>
+    <button class="btn btn-primary" type="submit">Add</button>
+</form>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

@@ -1,26 +1,104 @@
+using HospitalProject.Models;
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
 using System.Web.Mvc;
 
 namespace HospitalProject.Controllers
 {
     public class PatientController : Controller
     {
+        private static readonly HttpClient client;
+
+        static PatientController()
+        {
+            client = new HttpClient();
+            client.BaseAddress = new Uri("https://localhost:44397/");
+        }
+
         public ActionResult Index()
         {
-            return View();
+            string url = "api/patient";
+            HttpResponseMessage response = client.GetAsync(url).Result;
+
+            IEnumerable<Patient> patients = response.Content.ReadAsAsync<IEnumerable<Patient>>().Result;
+
+            return View(patients);
         }
 
-        public ActionResult Add()
+
+        public ActionResult Details(int id)
+        {
+            string url = "api/patient/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+
+            Patient patient = response.Content.ReadAsAsync<Patient>().Result;
+
+            return View(patient);
+        }
+
+        public ActionResult New()
         {
             return View();
         }
 
-        public ActionResult Show(int id)
+        [HttpPost]
+        public ActionResult Create(Patient patient)
         {
-            ViewBag.Id = id;
-            return View();
+            string url = "api/patient";
+            HttpResponseMessage response = client.PostAsJsonAsync(url, patient).Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Error");
+            }
         }
 
-        public ActionResult UpdateLeadger()
+        [Authorize]
+        public ActionResult Edit(int id)
+        {
+            string url = "api/patient/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            Patient selectedPatient = response.Content.ReadAsAsync<Patient>().Result;
+
+            return View(selectedPatient);
+        }
+
+        public ActionResult Update(Patient patient)
+        {
+            string url = "api/patient/" + patient.Id;
+            HttpResponseMessage response = client.PutAsJsonAsync(url, patient).Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Error");
+            }
+        }
+
+        public ActionResult Delete(int id)
+        {
+            string url = "api/patient/" + id;
+            HttpResponseMessage response = client.DeleteAsync(url).Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Error");
+            }
+        }
+
+        public ActionResult Error()
         {
             return View();
         }

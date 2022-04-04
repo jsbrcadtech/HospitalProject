@@ -1,0 +1,31 @@
+﻿@model HospitalProject.Models.Patient
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Patient</h4>
+    <div>
+        <Label>Name: </Label>
+        <span>@Model.Name</span>
+    </div>
+    <div>
+        <Label>Email: </Label>
+        <span>@Model.Email</span>
+    </div>
+    <div>
+        <Label>Phone: </Label>
+        <span>@Model.Phone</span>
+    </div>
+    <div>
+        <Label>Date Of Birth: </Label>
+        <span>@Model.DateOfBirth.ToShortDateString()</span>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

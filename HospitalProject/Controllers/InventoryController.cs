@@ -2,6 +2,7 @@
 
 namespace HospitalProject.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class InventoryController : Controller
     {
         public ActionResult Index()

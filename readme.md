@@ -1,4 +1,31 @@
+# SQL queries for users
+
+## Insert Users
+
+```
+INSERT INTO HospitalDb.dbo.AspNetUsers (Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName)
+VALUES (N'4e4d017c-5ccd-4ad0-bebc-b9f742ab3abf',N'staff@mail.com',0,N'AKNqLm8ixwlfiFRLX1IfHQFfRJyENMJaYcYhCxoQ0uoEQZGVD2MCbOPLv4TlO2/EsQ==',N'60184021-12b5-4136-bfbb-809968d65bc7',NULL,0,0,NULL,1,0,N'staff@mail.com');
+
+INSERT INTO HospitalDb.dbo.AspNetUsers (Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName)
+VALUES (N'82d38dd6-71d8-4423-95e8-7290986113d3',N'admin@mail.com',0,N'ANt8Pg950Aujc4wXjPKTtKIWEM+VsPWXbp9MDP9ff8kZAzUeWGTHkF4wuw5K7OkYKw==',N'bfdfc96b-b8bd-40ae-8c51-e1933ad58eb6',NULL,0,0,NULL,1,0,N'admin@mail.com');
+```
+
+## Insert Roles
+
+```
+INSERT INTO AspNetRoles (Id, Name) VALUES(1, 'admin');
+INSERT INTO AspNetRoles (Id, Name) VALUES(2, 'staff');
+```
+
+## Insert User Role relation
+
+```
+INSERT INTO AspNetUserRoles (UserId, RoleId) VALUES('82d38dd6-71d8-4423-95e8-7290986113d3', '1'); -- admin
+INSERT INTO AspNetUserRoles (UserId, RoleId) VALUES('4e4d017c-5ccd-4ad0-bebc-b9f742ab3abf', '2'); -- staff
+```
+
 # Inventory & Inventory ledgers
+
 - api to add new item to inventory
 - api to update inventory item
 - api to get all inventory items (supports searh by item name & pagination)

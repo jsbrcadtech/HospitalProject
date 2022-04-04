@@ -73,9 +73,9 @@ namespace HospitalProject.Controllers
         /// <returns>
         /// HEADER: 204 (Success, No Content Response)
         [Route("{id:int}")]
-        [HttpPost]
+        [HttpPut]
         public IHttpActionResult UpdateSpecialization(int id, Specialization specialization)
-            
+
         {
             if (!ModelState.IsValid)
             {
@@ -90,7 +90,7 @@ namespace HospitalProject.Controllers
             _db.Entry(specialization).State = System.Data.Entity.EntityState.Modified;
             _db.SaveChanges();
             return StatusCode(System.Net.HttpStatusCode.NoContent);
-            
+
         }
 
     }

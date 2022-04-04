@@ -1,0 +1,19 @@
+﻿@model HospitalProject.Models.Specialization
+
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>New</h2>
+
+<form action="/specialization/create" method="post">
+    <div class="form-group">
+        <label class="control-label">Name</label>
+        <input class="form-control" type="text" name="name" value="" required />
+    </div>
+    <button class="btn btn-primary" type="submit">Add</button>
+</form>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

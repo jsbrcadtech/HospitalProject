@@ -196,7 +196,7 @@
     <Compile Include="Controllers\PatientDataController.cs" />
     <Compile Include="Controllers\PreScreeningController.cs" />
     <Compile Include="Controllers\PreScreeningDataController.cs" />
-    <Compile Include="Controllers\SpecializationsController.cs" />
+    <Compile Include="Controllers\SpecializationController.cs" />
     <Compile Include="Controllers\SpecializationDataController.cs" />
     <Compile Include="Controllers\StaffController.cs" />
     <Compile Include="Controllers\StaffDataController.cs" />
@@ -314,11 +314,6 @@
     <Content Include="Views\Inventory\Add.cshtml" />
     <Content Include="Views\Inventory\Show.cshtml" />
     <Content Include="Views\Inventory\UpdateLeadger.cshtml" />
-    <Content Include="Views\Specializations\Create.cshtml" />
-    <Content Include="Views\Specializations\Delete.cshtml" />
-    <Content Include="Views\Specializations\Details.cshtml" />
-    <Content Include="Views\Specializations\Edit.cshtml" />
-    <Content Include="Views\Specializations\Index.cshtml" />
     <Content Include="Views\Staff\DeleteConfirm.cshtml" />
     <Content Include="Views\Announcement\List.cshtml" />
     <Content Include="Views\Announcement\Details.cshtml" />
@@ -336,6 +331,11 @@
     <Content Include="Views\Patients\Edit.cshtml" />
     <Content Include="Views\Patients\Index.cshtml" />
     <Content Include="Views\Appointment\Add.cshtml" />
+    <Content Include="Views\Specialization\Details.cshtml" />
+    <Content Include="Views\Specialization\Edit.cshtml" />
+    <Content Include="Views\Specialization\Index.cshtml" />
+    <Content Include="Views\Specialization\New.cshtml" />
+    <Content Include="Views\Specialization\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

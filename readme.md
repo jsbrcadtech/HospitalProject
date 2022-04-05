@@ -38,3 +38,21 @@ INSERT INTO AspNetUserRoles (UserId, RoleId) VALUES('4e4d017c-5ccd-4ad0-bebc-b9f
 - reponsive features like search as user types
 - client side validations using html5 and JS
 - server side validations
+
+# ParkingSpot 
+
+- api to add a new parking spot to the system
+- api to update a parking spot in the system
+- api to list all parking spots in the system 
+- api to get a parking spot details by its id
+- api to delete a parking spot from the system
+- base authentication with no roles established yet (To be added)  
+
+# Staff 
+
+- api to add a new staff to the system
+- api to update a staff in the system
+- api to list all staff in the system 
+- api to get a staff details, annoucements made, and parking spot associtaed by the staff id
+- api to delete a staff from the system
+- base authentication with no roles established yet (To be added)  

@@ -56,3 +56,17 @@ INSERT INTO AspNetUserRoles (UserId, RoleId) VALUES('4e4d017c-5ccd-4ad0-bebc-b9f
 - api to get a staff details, annoucements made, and parking spot associtaed by the staff id
 - api to delete a staff from the system
 - base authentication with no roles established yet (To be added)  
+
+# Announcement 
+
+- api to add a new announcement to the system
+- api to update a announcement in the system
+- api to list all announcement in the system 
+- api to get an announcement details by its id
+- api to delete an announcement from the system
+- base authentication with no roles established yet (To be added) 
+
+# Prescreening 
+
+- api to add a new prescreening form to the system if the condition is met.
+- base authentication with no roles established yet (To be added)  

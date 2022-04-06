@@ -80,3 +80,22 @@ Justus
 
 - api to add a new prescreening form to the system if the condition is met.
 - base authentication with no roles established yet (To be added)  
+
+ -----------------------------------------------------
+ Divish
+ 
+ # Specialization
+
+- api to add a new specialization to the system
+- api to search specialization by id
+- api to update specialization in the system
+- api to delete specialization in the system
+- api to list specializations in system 
+
+ # Patients
+
+- api to add a new patient to the system
+- api to list all patients in the system
+- api to get patient by id
+- api to delete patient in the system by id
+- api to update patient in the system 

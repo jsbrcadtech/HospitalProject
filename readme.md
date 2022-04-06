@@ -23,6 +23,8 @@ INSERT INTO AspNetRoles (Id, Name) VALUES(2, 'staff');
 INSERT INTO AspNetUserRoles (UserId, RoleId) VALUES('82d38dd6-71d8-4423-95e8-7290986113d3', '1'); -- admin
 INSERT INTO AspNetUserRoles (UserId, RoleId) VALUES('4e4d017c-5ccd-4ad0-bebc-b9f742ab3abf', '2'); -- staff
 ```
+-----------------------------------------------------
+Pallav
 
 # Inventory & Inventory ledgers
 
@@ -38,6 +40,10 @@ INSERT INTO AspNetUserRoles (UserId, RoleId) VALUES('4e4d017c-5ccd-4ad0-bebc-b9f
 - reponsive features like search as user types
 - client side validations using html5 and JS
 - server side validations
+
+-----------------------------------------------------
+
+Justus
 
 # ParkingSpot 
 
@@ -55,7 +61,11 @@ INSERT INTO AspNetUserRoles (UserId, RoleId) VALUES('4e4d017c-5ccd-4ad0-bebc-b9f
 - api to list all staff in the system 
 - api to get a staff details, annoucements made, and parking spot associtaed by the staff id
 - api to delete a staff from the system
-- base authentication with no roles established yet (To be added)  
+- base authentication with no roles established yet (To be added)
+
+ -----------------------------------------------------
+ 
+ Karmugil
 
 # Announcement 
 

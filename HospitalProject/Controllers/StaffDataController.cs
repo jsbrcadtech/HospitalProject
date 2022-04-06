@@ -30,7 +30,7 @@ namespace HospitalProject.Controllers
         [HttpGet]
         public IHttpActionResult ListStaffs()
         {
-            List<Staff> Staffs = db.Staffs.ToList();
+            List<Staff> Staffs = db.Staffs.Include(S => S.Specializations).ToList();
             List<StaffsDto> StaffsDtos = new List<StaffsDto>();
 
             Staffs.ForEach(s => StaffsDtos.Add(new StaffsDto()
@@ -39,7 +39,8 @@ namespace HospitalProject.Controllers
                 Name = s.Name,
                 StartTime = s.StartTime,
                 EndTime = s.EndTime,
-                SpecializationId = s.SpecializationId
+                SpecializationId = s.SpecializationId,
+                SpecializationName = s.Specializations.Name
             }));
             return Ok(StaffsDtos);
         }
@@ -62,13 +63,15 @@ namespace HospitalProject.Controllers
         public IHttpActionResult FindStaff(int id)
         {
             Staff Staffs = db.Staffs.Find(id);
+            Specialization Specialization = db.Specializations.Find(Staffs.SpecializationId);
             StaffsDto StaffsDto = new StaffsDto()
             {
                 Id = Staffs.Id,
                 Name = Staffs.Name,
                 StartTime = Staffs.StartTime,
                 EndTime = Staffs.EndTime,
-                SpecializationId = Staffs.SpecializationId
+                SpecializationId = Staffs.SpecializationId,
+                SpecializationName = Specialization.Name
             };
             if (Staffs == null)
             {

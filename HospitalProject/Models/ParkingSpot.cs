@@ -30,7 +30,7 @@ namespace HospitalProject.Models
         public string Code { get; set; }
         public string Type { get; set; }
         public int StaffId { get; set; }
-        public string Name { get; set; }
+        public string StaffName { get; set; }
 
     }
 

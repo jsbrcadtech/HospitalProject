@@ -11,7 +11,7 @@
         <li><a style="color:darkred;" href="/Staff/DeleteConfirm/@Model.SelectedStaff.Id">Delete</a></li>
     </ul>
 </nav>
-<form action="/Staff/Update/@Model." method="POST">
+<form action="/Staff/Update/@Model.SelectedStaff.Id" method="POST">
     <div class="row">
         <div class="col-md-6 col-sm-12">
             <div>
@@ -43,7 +43,7 @@
 
             <div>
                 <label>Specialization:</label>
-                <input type="number" name="SpecializationId" value="@Model.SelectedStaff.SpecializationId" />
+                <input type="text" name="SpecializationName" value="@Model.SelectedStaff.SpecializationName" />
             </div>
 
         </div>

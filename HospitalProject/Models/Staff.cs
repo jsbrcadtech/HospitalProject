@@ -29,6 +29,8 @@ namespace HospitalProject.Models
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public int SpecializationId { get; set; }
+        public string SpecializationName { get; set; }
+
 
     }
 }

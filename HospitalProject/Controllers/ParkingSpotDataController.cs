@@ -35,7 +35,7 @@ namespace HospitalProject.Controllers
         [HttpGet]
         public IHttpActionResult ListParkingSpots()
         {
-            List<ParkingSpot> ParkingSpots = db.ParkingSpots.ToList();
+            List<ParkingSpot> ParkingSpots = db.ParkingSpots.Include(P => P.Staffs).ToList();
             List<ParkingSpotDto> ParkingSpotDtos = new List<ParkingSpotDto>();
 
             ParkingSpots.ForEach(p => ParkingSpotDtos.Add(new ParkingSpotDto()
@@ -43,7 +43,8 @@ namespace HospitalProject.Controllers
                 Id = p.Id,
                 Code = p.Code,
                 Type = p.Type,
-                StaffId = p.Staffs.Id
+                StaffId = p.Staffs.Id,
+                StaffName = p.Staffs.Name
             }));
             return Ok(ParkingSpotDtos);
         }
@@ -72,7 +73,8 @@ namespace HospitalProject.Controllers
                 Id = p.Id,
                 Code = p.Code,
                 Type = p.Type,
-                Name = p.Staffs.Name
+                StaffId = p.Staffs.Id,
+                StaffName = p.Staffs.Name
             }));
             return ParkingSpotsDtos;
         }
@@ -95,12 +97,15 @@ namespace HospitalProject.Controllers
         public IHttpActionResult FindParkingSpot(int id)
         {
             ParkingSpot ParkingSpot = db.ParkingSpots.Find(id);
+            Staff Staffs = db.Staffs.Find(ParkingSpot.StaffId);
+
             ParkingSpotDto ParkingSpotDto = new ParkingSpotDto()
             {
                 Id = ParkingSpot.Id,
                 Code = ParkingSpot.Code,
                 Type = ParkingSpot.Type,
-                StaffId = ParkingSpot.Staffs.Id
+                StaffId = ParkingSpot.Staffs.Id,
+                StaffName = ParkingSpot.Staffs.Name
             };
             if (ParkingSpot == null)
             {

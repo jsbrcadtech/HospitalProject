@@ -1,8 +1,19 @@
-﻿using HospitalProject.Models;
+using HospitalProject.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
+using System.Web.Http.Description;
+using System.Diagnostics;
 
 namespace HospitalProject.Controllers
 {
@@ -10,18 +21,27 @@ namespace HospitalProject.Controllers
 
     public class SpecializationDataController : ApiController
     {
-        private readonly ApplicationDbContext _db = new ApplicationDbContext();
+        private ApplicationDbContext _db = new ApplicationDbContext();
 
         /// <summary>
         /// Returns all specializations in the system.
         /// </summary>
         /// <returns>
         /// HEADER: 200 (OK)
-        [Route("")]
+        [ResponseType(typeof(SpecializationsDto))]
         [HttpGet]
-        public IEnumerable<Specialization> GetAll()
+        public IHttpActionResult ListSpecializations()
         {
-            return _db.Specializations;
+            List<Specialization> specializations = _db.Specializations.Include(s => s.Name).ToList();
+            List<SpecializationsDto> specializationsDtos = new List<SpecializationsDto>();
+
+            specializations.ForEach(s => specializationsDtos.Add(new SpecializationsDto()
+            {
+                Name = s.Name,
+                Id = s.Id
+            }));
+
+            return Ok(specializationsDtos);
         }
 
         /// <summary>
@@ -92,6 +112,44 @@ namespace HospitalProject.Controllers
             return StatusCode(System.Net.HttpStatusCode.NoContent);
 
         }
+        /*
+        [HttpGet]
+        [Route("api/specializationdata/search/{searchKey?}")]
+        public IEnumerable<Specialization> Search(string searchKey = null)
+        {
+            if (searchKey == null)
+            {
+                return _db.Specializations;
+            }
+            else
+            {
+                return _db.Specializations.Where(s => s.Name.Contains(searchKey));
+            }
+        }
+        */
+
+        [Route("")]
+        [ResponseType(typeof(SpecializationsDto))]
+        [HttpGet]
+        public IHttpActionResult Search(string searchKey = null)
+        {
+            var specialization = _db.Specializations.AsQueryable();
+
+            if (searchKey != null)
+            {
+                specialization = specialization.Where(s => s.Name.Contains(searchKey));
+            }
+
+            return Ok(specialization);
+
+        }
+
+
+
+
+
+
+
 
     }
 

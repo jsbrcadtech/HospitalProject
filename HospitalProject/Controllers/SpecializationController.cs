@@ -1,14 +1,18 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Web.Mvc;
 using HospitalProject.Models;
+using System.Linq;
+using HospitalProject.Models.Dto;
 
 namespace HospitalProject.Controllers
 {
     public class SpecializationController : Controller
     {
         private static readonly HttpClient client;
+        private ApplicationDbContext _db = new ApplicationDbContext();
+
 
         static SpecializationController()
         {
@@ -16,15 +20,48 @@ namespace HospitalProject.Controllers
             client.BaseAddress = new Uri("https://localhost:44397/");
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string search, string option)
         {
-            string url = "api/specialization";
-            HttpResponseMessage response = client.GetAsync(url).Result;
+            //string url = "api/specialization";
+            //HttpResponseMessage response = client.GetAsync(url).Result;
 
-            IEnumerable<Specialization> specializations = response.Content.ReadAsAsync<IEnumerable<Specialization>>().Result;
+            //IEnumerable<Specialization> specializations = response.Content.ReadAsAsync<IEnumerable<Specialization>>().Result;
 
-            return View(specializations);
+            List<Specialization> specializations = _db.Specializations.ToList();
+
+            //return View(specializations);
+
+            if (option == "Id")
+            {
+                return View(_db.Specializations.Where(s => s.Id.ToString() == search));
+
+            }
+            else if (option == "Name")
+            {
+                return View(_db.Specializations.Where(s => s.Name.Contains(search)));
+
+            } else 
+            {
+                //return View(specializations);
+                return View(specializations);
+            }
+
         }
+
+        // GET: /Specialization/SearchSpecialization
+        public ActionResult SearchSpecialization(string searchKey = null)
+        {
+            //return View();
+            if (searchKey == null)
+            {
+                return View();
+            }
+            else
+            {
+                return View(_db.Specializations.Where(s => s.Name.Contains(searchKey)));
+            }
+        }
+
 
 
         public ActionResult Details(int id)

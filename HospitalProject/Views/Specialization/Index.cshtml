@@ -10,12 +10,7 @@
     @Html.ActionLink("Create New", "New")
 </p>
 
-<!--
-<form action="SearchSpecialization" method="GET">
-    <input type="text" name="searchKey" />
-    <input type="submit" name="name" value="Search" />
-</form>
--->
+
 @using (Html.BeginForm("Index", "Home", FormMethod.Get))
 {
     <b>Search Option</b>@Html.RadioButton("option", "Name")<text>Name</text>

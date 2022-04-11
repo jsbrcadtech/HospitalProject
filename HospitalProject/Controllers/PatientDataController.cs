@@ -1,7 +1,19 @@
-﻿using HospitalProject.Models;
+using HospitalProject.Models;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
+using System.Web.Http.Description;
+using System.Diagnostics;
 
 
 namespace HospitalProject.Controllers
@@ -37,12 +49,24 @@ namespace HospitalProject.Controllers
         /// </summary>
         /// <returns>
         /// HEADER: 200 (OK)
-        [Route("")]
+        [ResponseType(typeof(PatientDto))]
         [HttpGet]
 
-        public IEnumerable<Patient> GetAll()
+        public IHttpActionResult ListPatients()
+
         {
-            return _db.Patients;
+            List<Patient> patients = _db.Patients.Include(p => p.Name).ToList();
+            List<PatientDto> patientDtos = new List<PatientDto>();
+
+            patients.ForEach(p => patientDtos.Add(new PatientDto()
+            {
+                Name = p.Name,
+                Email = p.Email,
+                Phone = p.Phone,
+                DateOfBirth = p.DateOfBirth,
+                Id = p.Id
+            }));
+            return Ok(patientDtos);
         }
 
         /// <summary>

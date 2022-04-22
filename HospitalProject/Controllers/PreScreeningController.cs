@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Web.Mvc;
 using HospitalProject.Models;
 using Microsoft.AspNet.Identity;
+using System.Diagnostics;
 
 namespace HospitalProject.Controllers
 {
@@ -36,6 +37,7 @@ namespace HospitalProject.Controllers
             preScreening.UserId = User.Identity.GetUserId();
             string url = "/api/prescreening";
             HttpResponseMessage response = client.PostAsJsonAsync(url, preScreening).Result;
+            Debug.WriteLine(response.StatusCode);
 
             if (response.IsSuccessStatusCode)
             {

@@ -13,6 +13,7 @@ using System.Diagnostics;
 
 namespace HospitalProject.Controllers
 {
+    //[Authorize]
     public class AnnouncementDataController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -158,6 +159,7 @@ namespace HospitalProject.Controllers
         /// BadRequest - if request body is invalid
         /// </returns>
         // POST: api/AnnouncementData/UpdateAnnouncement/5
+        //[Authorize]
         [ResponseType(typeof(void))]
         [HttpPost]
         public IHttpActionResult UpdateAnnouncement(int id, Announcement announcement)
@@ -224,6 +226,7 @@ namespace HospitalProject.Controllers
         /// </returns>
 
         // POST: api/AnnouncementData/AddAnnouncement
+        //[Authorize]
         [ResponseType(typeof(Announcement))]
         [HttpPost]
         public IHttpActionResult AddAnnouncement(Announcement announcement)
@@ -249,6 +252,7 @@ namespace HospitalProject.Controllers
         /// NotFound - if announcemnet with requested id is not in the DB
         /// </returns>
         // POST: api/AnnouncementData/DeleteAnnouncement/5
+        //[Authorize]
         [ResponseType(typeof(Announcement))]
         [HttpPost]
         public IHttpActionResult DeleteAnnouncement(int id)

@@ -18,19 +18,23 @@ namespace HospitalProject.Controllers
             client.BaseAddress = new Uri("https://localhost:44397");
         }
 
+
         //GET: Error
+        [Authorize]
         public ActionResult Error()
         {
             return View();
         }
 
         // GET: PreScreening/New
+        [Authorize]
         public ActionResult New()
         {
             return View();
         }
 
         // POST: PreScreening/Create
+        [Authorize]
         [HttpPost]
         public ActionResult Create(PreScreening preScreening)
         {

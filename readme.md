@@ -74,12 +74,15 @@ Justus
 - api to list all announcement in the system 
 - api to get an announcement details by its id
 - api to delete an announcement from the system
-- base authentication with no roles established yet (To be added) 
+- base authentication with no roles established for the update,add and delete routes.
 
 # Prescreening 
 
 - api to add a new prescreening form to the system if the condition is met.
-- base authentication with no roles established yet (To be added)  
+- user table is connected to the prescreening api so that the appointment table will be using the last createdAt time to check the vaccination status.
+- For a userId the existing prescreening data will be deleted and the new data will be added which can be tracked using the createAt column data.
+- only vaccinated user be redirected to the appointment table.
+- base authentication with no roles established so that only logged in user can access the presscreening form.  
 
  -----------------------------------------------------
  Divish

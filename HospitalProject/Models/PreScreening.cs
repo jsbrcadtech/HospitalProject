@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HospitalProject.Models
 {
@@ -11,14 +7,29 @@ namespace HospitalProject.Models
     {
         [Key]
         public int Id { get; set; }
-        public int VaccinationStatus { get; set; }
+
+        [Required]
+        public bool Vaccinated { get; set; }
+
+        public DateTime LastVaccinationDate { get; set; }
+
+        [Required]
+        public bool Cough { get; set; }
+
+        [Required]
+        public bool SoreThroat { get; set; }
+
+        [Required]
+        public bool FeverOrChills { get; set; }
+
+        [Required]
+        public bool ShortnessOfBreath { get; set; }
+
+        [Required]
         public DateTime CreatedAt { get; set; }
 
-        // A prescreening is attached to one patient
-        // A patient can have many prescreenings
-        [ForeignKey("Patients")]
-        public int PatientId { get; set; }
-        public virtual Patient Patients { get; set; }
-
+        [Required]
+        [MaxLength(128)]
+        public string UserId { get; set; }
     }
 }

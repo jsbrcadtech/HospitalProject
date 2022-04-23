@@ -16,14 +16,14 @@
 </h2>
 
 <div>
-    Start Time: @Model.SelectedStaff.StartTime
+    Start Time: @Model.SelectedStaff.StartTime.ToString("HH:mm tt")
 </div>
 
 <div>
-    End Time: @Model.SelectedStaff.EndTime
+    End Time: @Model.SelectedStaff.EndTime.ToString("HH:mm tt")
 </div>
 <div>
-    Specialization: @Model.SelectedStaff.SpecializationName
+    Specialization: @Model.SelectedStaff.Specialization.Name
 </div>
 
 <div style="margin-top:100px;">

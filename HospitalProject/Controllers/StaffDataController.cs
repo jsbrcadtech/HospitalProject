@@ -40,7 +40,7 @@ namespace HospitalProject.Controllers
                 StartTime = s.StartTime,
                 EndTime = s.EndTime,
                 SpecializationId = s.SpecializationId,
-                SpecializationName = s.Specializations.Name
+                Specialization = s.Specializations
             }));
             return Ok(StaffsDtos);
         }
@@ -71,7 +71,7 @@ namespace HospitalProject.Controllers
                 StartTime = Staffs.StartTime,
                 EndTime = Staffs.EndTime,
                 SpecializationId = Staffs.SpecializationId,
-                SpecializationName = Specialization.Name
+                Specialization = Specialization
             };
             if (Staffs == null)
             {

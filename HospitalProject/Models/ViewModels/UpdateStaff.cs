@@ -13,5 +13,7 @@ namespace HospitalProject.Models.ViewModels
 
             // All Parking Spots to choose from when updating this Staff
             public IEnumerable<SpecializationsDto> SpecializationsOptions { get; set; }
+
+
     }
 }

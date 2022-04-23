@@ -8,7 +8,7 @@
 @foreach (var Staff in Model)
 {
     <h2><a href="/Staff/Details/@Staff.Id">@Staff.Name</a></h2>
-    <div>Start Time: @Staff.StartTime</div>
-    <div>End Time: @Staff.EndTime</div>
-    <div>Specialization: @Staff.SpecializationName</div>
+    <div>Start Time: @Staff.StartTime.ToString("HH:mm tt")</div>
+    <div>End Time: @Staff.EndTime.ToString("HH:mm tt")</div>
+    <div>Specialization: @Staff.Specialization.Name</div>
 }

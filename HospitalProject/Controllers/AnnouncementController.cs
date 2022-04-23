@@ -68,7 +68,7 @@ namespace HospitalProject.Controllers
             return View();
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin")]
         // GET: Announcement/New
         public ActionResult New()
         {
@@ -82,7 +82,7 @@ namespace HospitalProject.Controllers
             return View(StaffsOptions);
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin")]
         // POST: Announcement/Create
         [HttpPost]
         public ActionResult Create(Announcement announcement)
@@ -110,7 +110,7 @@ namespace HospitalProject.Controllers
             }
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin")]
         // GET: Announcement/Edit/5
         public ActionResult Edit(int id)
         {
@@ -134,7 +134,7 @@ namespace HospitalProject.Controllers
             return View(ViewModel);
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin")]
         // POST: Announcement/Update/5
         [HttpPost]
         public ActionResult Update(int id, Announcement announcement)
@@ -156,7 +156,7 @@ namespace HospitalProject.Controllers
 
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin")]
         // GET: Announcement/Delete/5
         public ActionResult DeleteConfirm(int id)
         {
@@ -166,7 +166,7 @@ namespace HospitalProject.Controllers
             return View(selectedannouncement);
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin")]
         // POST: Announcement/Delete/5
         [HttpPost]
         public ActionResult Delete(int id)

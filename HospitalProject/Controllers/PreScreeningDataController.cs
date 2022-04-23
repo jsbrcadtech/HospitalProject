@@ -79,8 +79,8 @@ namespace HospitalProject.Controllers
             db.PreScreenings.Add(preScreening);
             db.SaveChanges();
             Debug.WriteLine("none is triggered");
-            return CreatedAtRoute("DefaultApi", new { id = preScreening.Id }, preScreening);
-
+            //return CreatedAtRoute("DefaultApi", new { id = preScreening.Id }, preScreening);
+            return Ok();
         }
 
         private void RemoveOldData(string userId)

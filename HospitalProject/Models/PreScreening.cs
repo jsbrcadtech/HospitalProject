@@ -31,5 +31,22 @@ namespace HospitalProject.Models
         [Required]
         [MaxLength(128)]
         public string UserId { get; set; }
+
+        public bool IsValid()
+        {
+            if(Cough|| SoreThroat || FeverOrChills || ShortnessOfBreath || !Vaccinated)
+            {
+                return false;
+            }
+            if(LastVaccinationDate > DateTime.Now.AddDays(-14))
+            {
+                return false;
+            }
+            if(CreatedAt < DateTime.Now.Date)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

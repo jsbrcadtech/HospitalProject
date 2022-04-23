@@ -19,6 +19,11 @@ namespace HospitalProject.Controllers
             _client.BaseAddress = new Uri("https://localhost:44397");
         }
 
+        public ActionResult Error()
+        {
+            return View();
+        }
+
         // GET: Appointment
         public ActionResult Add()
         {
@@ -26,13 +31,39 @@ namespace HospitalProject.Controllers
             var res = _client.GetAsync($"/api/PreScreening/{userId}").Result;
             var preScreening = res.Content.ReadAsAsync<PreScreening>().Result;
 
-            ViewBag.PreScreeningCompleted = true;
-            if (preScreening == null || preScreening.CreatedAt < DateTime.Now.Date)
-            {
-                ViewBag.PreScreeningCompleted = false;
-            }
+            ViewBag.PreScreeningCompleted = preScreening.IsValid();
 
             return View();
+        }
+
+        public ActionResult Index()
+        {
+            var userId = User.Identity.GetUserId();
+            var res = _client.GetAsync($"/api/appointments/{userId}").Result;
+
+            var appointments = res.Content.ReadAsAsync<List<Appointment>>().Result;
+
+            foreach (var appointment in appointments)
+            {
+                var staffRes = _client.GetAsync($"/api/StaffData/FindStaff/{appointment.StaffId}").Result;
+                appointment.Staff = staffRes.Content.ReadAsAsync<Staff>().Result;
+            }
+
+            return View(appointments);
+        }
+
+        public ActionResult Delete(int id)
+        {
+            var res = _client.DeleteAsync($"/api/appointments/{id}").Result;
+
+            if (res.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Error");
+            }
         }
     }
 }

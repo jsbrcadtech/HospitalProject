@@ -219,6 +219,14 @@
     <Compile Include="Migrations\202204220326364_UpdatePreScreeningModel.designer.cs">
       <DependentUpon>202204220326364_UpdatePreScreeningModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202204230222124_UpdateModelForAppointment.cs" />
+    <Compile Include="Migrations\202204230222124_UpdateModelForAppointment.designer.cs">
+      <DependentUpon>202204230222124_UpdateModelForAppointment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204230438595_UpdateStaffFkToAppointment.cs" />
+    <Compile Include="Migrations\202204230438595_UpdateStaffFkToAppointment.designer.cs">
+      <DependentUpon>202204230438595_UpdateStaffFkToAppointment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Announcement.cs" />
@@ -345,6 +353,8 @@
     <Content Include="Views\Patient\Details.cshtml" />
     <Content Include="Views\Patient\Error.cshtml" />
     <Content Include="Views\Patient\Edit.cshtml" />
+    <Content Include="Views\Appointment\Index.cshtml" />
+    <Content Include="Views\Appointment\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -375,6 +385,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202204220326364_UpdatePreScreeningModel.resx">
       <DependentUpon>202204220326364_UpdatePreScreeningModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204230222124_UpdateModelForAppointment.resx">
+      <DependentUpon>202204230222124_UpdateModelForAppointment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204230438595_UpdateStaffFkToAppointment.resx">
+      <DependentUpon>202204230438595_UpdateStaffFkToAppointment.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -8,23 +8,23 @@
 <h2>Add New Staff</h2>
 
 <form action="/Staff/Create" method="POST">
-    <div class="field-container">
-        <label>Name:</label>
-        <input type="text" name="Name" class="" />
+    <div class="form-group">
+        <label class="control-label">Name:</label>
+        <input type="text" name="Name" class="form-control" required />
     </div>
 
-    <div class="field-container">
-        <label>Start Time:</label>
-        <input type="time" name="StartTime" class="" />
+    <div class="form-group">
+        <label class="control-label">Start Time:</label>
+        <input type="time" name="StartTime" class="form-control" required />
     </div>
 
-    <div class="field-container">
-        <label>End Time:</label>
-        <input type="time" name="EndTime" class="" />
+    <div class="form-group">
+        <label class="control-label">End Time:</label>
+        <input type="time" name="EndTime" class="form-control" require />
     </div>
 
-    <div>
-        <label>Specialization:</label>
+    <div class="form-group">
+        <label class="control-label">Specialization:</label>
         <select name="SpecializationId">
             @foreach (var specializations in Model)
             {
@@ -34,7 +34,9 @@
         </select>
     </div>
 
-    <div><input type="submit" value="Add Staff" /></div>
+    <button class="btn btn-primary" type="submit" />Add</button>
 </form>
 
-
+<div>
+    @Html.ActionLink("Back to List", "List")
+</div>

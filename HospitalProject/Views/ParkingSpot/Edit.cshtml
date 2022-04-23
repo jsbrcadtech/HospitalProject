@@ -4,34 +4,24 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Update Parking Spot</h2>
-<nav>
-    <ul>
-        <li><a href="/ParkingSpot/List">Go back to list</a></li>
-        <li><a style="color:darkred" href="/ParkingSpot/DeleteConfirm/@Model.SelectedParkingSpot.Id">Delete</a></li>
-    </ul>
-</nav>
+<h2>Edit</h2>
 
-<form action="/ParkingSpot/Update/@Model.SelectedParkingSpot.Id" method="POST" enctype="multipart/form-data">
-    <div class="row">
-        <div class="col-md-6 col-sm-12">
-
-            <div style="display:none;">
-                @* Passing through the  Parking Spot Id *@
-                <input type="number" name="Id" value="@Model.SelectedParkingSpot.Id" />
+<form action="/ParkingSpot/update" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="id" value="@Model.SelectedParkingSpot.Id" />
+    <div class="form-group">
+        <div class="form-group">
+            <div class="form-group">
+                <label class="control-label">Code:</label>
+                <input class="form-control" type="text" name="Code" value="@Model.SelectedParkingSpot.Code" required />
             </div>
 
-            <div>
-                <label>Code:</label>
-                <input type="text" name="Code" value="@Model.SelectedParkingSpot.Code" />
+            <div class="form-group">
+                <label class="control-label">Type:</label>
+                <input class="form-control" type="text" name="Type" value="@Model.SelectedParkingSpot.Type" required />
             </div>
 
-            <div>
-                <label>Type:</label>
-                <input type="text" name="Type" value="@Model.SelectedParkingSpot.Type" />
-            </div>
-
-            <div>
+            <div class="form-group">
+                <label class="control-label">Staff:</label>
                 <select name="StaffId">
                     @foreach (var staffs in Model.StaffsOptions)
                     {
@@ -45,12 +35,7 @@
                     }
                 </select>
             </div>
-
         </div>
-
     </div>
-
-    <div>
-        <input type="submit" value="Update Parking Spot" />
-    </div>
+    <button class="btn btn-primary" type="submit">Save</button>
 </form>

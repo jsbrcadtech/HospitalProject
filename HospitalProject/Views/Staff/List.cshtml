@@ -3,12 +3,49 @@
     ViewBag.Title = "List";
 }
 
-<h2>List</h2>
-<a href="/Staff/New">New Staff</a>
-@foreach (var Staff in Model)
-{
-    <h2><a href="/Staff/Details/@Staff.Id">@Staff.Name</a></h2>
-    <div>Start Time: @Staff.StartTime.ToString("HH:mm tt")</div>
-    <div>End Time: @Staff.EndTime.ToString("HH:mm tt")</div>
-    <div>Specialization: @Staff.Specialization.Name</div>
-}
+<h2>Staff List</h2>
+<p>
+    @Html.ActionLink("Add New Staff", "New")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Start Time:
+        </th>
+        <th>
+            End Time:
+        </th>
+        <th>
+            Specialization
+        </th>
+
+        <th></th>
+    </tr>
+    @foreach (var Staff in Model)
+    {
+        <tr>
+            <td>
+                @Staff.Name
+            </td>
+            <td>
+                @Staff.StartTime.ToString("HH:mm tt")
+            </td>
+            <td>
+                @Staff.EndTime.ToString("HH:mm tt")
+            </td>
+            <td>
+                @Staff.Specialization.Name
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = Staff.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = Staff.Id }) |
+                @Html.ActionLink("Delete", "DeleteConfirm", new { id = Staff.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+

@@ -4,59 +4,33 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Update Staff</h2>
+<h2>Edit</h2>
 
-    <nav>
-        <ul>
-            <li><a href="/Staff/List">Go back to list</a></li>
-            <li><a style="color:darkred;" href="/Staff/DeleteConfirm/@Model.SelectedStaff.Id">Delete</a></li>
-        </ul>
-    </nav>
-
-    <form action="/Staff/Update/@Model.SelectedStaff.Id" method="POST">
-        <div class="row">
-            <div class="col-md-6 col-sm-12">
-                <div>
-                    <label>Staff Id</label>
-                    <input type="number" name="Id" value="@Model.SelectedStaff.Id" />
-                </div>
-
-                <div>
-                    <label>Name</label>
-                    <input type="text" name="Name" value="@Model.SelectedStaff.Name" />
-                </div>
-
-                <div>
-                    <label>Start Time:</label>
-                    <input type="time" name="StartTime" value="@Model.SelectedStaff.StartTime.ToString("HH:mm tt")" />
-                </div>
-
-                <div>
-                    <label>End Time:</label>
-                    <input type="time" name="EndTime" value="@Model.SelectedStaff.EndTime.ToString("HH:mm tt")" />
-                </div>
-
-                <label>Specialization:</label>
-                <select>
-                    @foreach (var specialization in Model.SpecializationsOptions)
-                    {
-                        if (@specialization.Id == Model.SelectedStaff.Specialization.Id)
-                        {
-                            <option value="@specialization.Id" selected="selected">@specialization.Name</option>
-                        }
-                        else
-                        {
-                            <option value="@specialization.Id">@specialization.Name</option>
-
-                        }
-                    }
-                </select>
-
+<form action="/Staff/update" method="POST">
+    <input type="hidden" name="id" value="@Model.SelectedStaff.Id" />
+    <div class="form-group">
+        <div class="form-group">
+            <div class="form-group">
+                <label class="control-label">Name</label>
+                <input class="form-control" type="text" name="name" value="@Model.SelectedStaff.Name" required />
             </div>
 
-        </div>
-        <div>
-            <input type="submit" value="Update Staff" />
-        </div>
+            <div class="form-group">
+                <label class="control-label">Start Time:</label>
+                <input class="form-control" type="time" name="StartTime" value="@Model.SelectedStaff.StartTime.ToString("HH:mm tt")" required />
+            </div>
 
-    </form>
+            <div class="form-group">
+                <label class="control-label">End Time:</label>
+                <input class="form-control" type="time" name="EndTime" value="@Model.SelectedStaff.EndTime.ToString("HH:mm tt")" required />
+            </div>
+
+            <label class="control-label">Specialization:</label>
+            <select name="SpecializationId">
+                    <option value="@Model.SelectedStaff.SpecializationId">@Model.SelectedStaff.Specialization.Name</option>
+            </select>
+        </div>
+    </div>
+    <button class="btn btn-primary" type="submit">Save</button>
+
+</form>

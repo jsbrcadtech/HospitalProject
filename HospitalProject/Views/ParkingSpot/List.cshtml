@@ -3,14 +3,50 @@
     ViewBag.Title = "List";
 }
 
-<h2>List</h2>
-<a href="/ParkingSpot/New">Add New Parking Spot</a>
-@foreach (var parkingspot in Model)
-{
-    <h2><a href="/ParkingSpot/Details/@parkingspot.Id">@parkingspot.Code</a></h2>
-    <div>Parking Spot Code: @parkingspot.Code</div>
-    <div>Parking Spot Type: @parkingspot.Type</div>
-    <div>Staff  Id: @parkingspot.StaffId</div>
-    <div>Staff  Name: @parkingspot.StaffName</div>
-}
+<h2>Parking List</h2>
+<p>
+    @Html.ActionLink("Add New Parking", "New")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Parking Code
+        </th>
+        <th>
+            Parking type
+        </th>
+        <th>
+            Staff Id
+        </th>
+        <th>
+            Staff Name
+        </th>
+
+        <th></th>
+    </tr>
+    @foreach (var parkingspot in Model)
+    {
+        <tr>
+            <td>
+                @parkingspot.Code
+            </td>
+            <td>
+                @parkingspot.Type
+            </td>
+            <td>
+                @parkingspot.StaffId
+            </td>
+            <td>
+                @parkingspot.StaffName
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = parkingspot.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = parkingspot.Id }) |
+                @Html.ActionLink("Delete", "DeleteConfirm", new { id = parkingspot.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+
 

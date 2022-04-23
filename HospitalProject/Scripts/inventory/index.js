@@ -4,6 +4,7 @@ let pageNo = 1;
 let pageSize = 5;
 let totalPages = 1;
 let searchKey = null;
+let searchTimer;
 
 window.onload = handleLoad;
 
@@ -48,15 +49,23 @@ function addDateToPage(data) {
   });
 }
 
-async function handleSearch(e) {
+function handleSearch(e) {
   e.preventDefault();
+
+  if (searchTimer) {
+    clearTimeout(searchTimer);
+    searchTimer = null;
+  }
+
   const value = e.target.value;
 
   // use search key only if there are minimum 3 characters in search input
   searchKey = value.length >= 3 ? value : null;
   pageNo = 1;
 
-  await getInventories();
+  searchTimer = setTimeout(async () => {
+    await getInventories();
+  }, 500);
 }
 
 async function handlePrev() {

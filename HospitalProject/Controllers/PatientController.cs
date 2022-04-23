@@ -3,12 +3,16 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Web.Mvc;
+using System.Linq;
+
 
 namespace HospitalProject.Controllers
 {
     public class PatientController : Controller
     {
         private static readonly HttpClient client;
+        private ApplicationDbContext _db = new ApplicationDbContext();
+
 
         static PatientController()
         {
@@ -16,14 +20,30 @@ namespace HospitalProject.Controllers
             client.BaseAddress = new Uri("https://localhost:44397/");
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string search, string option)
         {
-            string url = "api/patient";
-            HttpResponseMessage response = client.GetAsync(url).Result;
+            //string url = "api/patient";
+            //HttpResponseMessage response = client.GetAsync(url).Result;
 
-            IEnumerable<Patient> patients = response.Content.ReadAsAsync<IEnumerable<Patient>>().Result;
+            //IEnumerable<Patient> patients = response.Content.ReadAsAsync<IEnumerable<Patient>>().Result;
+            List<Patient> patients = _db.Patients.ToList();
 
-            return View(patients);
+            if (option == "Patient")
+            {
+                return View(_db.Patients.Where(p => p.Name.Contains(search)));
+           
+            } else if (option == "email")
+            {
+                return View(_db.Patients.Where(p => p.Email.Contains(search)));
+
+            } else
+            {
+                return View(patients);
+
+            }
+
+
+
         }
 
 

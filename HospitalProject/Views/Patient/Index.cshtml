@@ -1,4 +1,4 @@
-﻿@model IEnumerable<HospitalProject.Models.Patient>
+@model IEnumerable<HospitalProject.Models.Patient>
 
 @{
     ViewBag.Title = "Index";
@@ -9,6 +9,21 @@
 <p>
     @Html.ActionLink("Create New", "New")
 </p>
+
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Get))
+{
+    <b>Search Option</b>@Html.RadioButton("option", "Patient")<text>Name</text>
+    @Html.RadioButton("option", "email")
+    <text>email</text> @Html.TextBox("search")
+    <input type="submit"
+           name="submit"
+           value="Search" />
+
+}
+
+
+
 <table class="table">
     <tr>
         <th>

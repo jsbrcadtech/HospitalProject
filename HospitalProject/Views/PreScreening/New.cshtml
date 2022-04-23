@@ -5,19 +5,56 @@
 
 <h2>PreScreening Form</h2>
 <form action="/PreScreening/Create" method="post">
-    <div>
-        <input type="checkbox" name="VaccinationStatus" value="1" />
-        <label>Please Declare that you have been vaccinated</label>
-    </div>
-    <div>
-        <label>Vaccinated At:</label>
-        <input type="text" name="CreatedAt" />
-    </div>
-    <div>
-        <label>Patient Name:</label>
-        <input type="number" name="PatientId" />
-    </div>
-    <div>
-        <input type="submit" value="Submit Form" />
-    </div>
+    <fieldset>
+        <legend>
+            Please answer yes or no for the following symptoms:
+        </legend>
+        <div>
+            <label>Cough:</label>
+            <input id="cough_yes" type="radio" name="cough" value="true" required />
+            <label for="cough_yes">Yes</label>
+            <input id="cough_no" type="radio" name="cough" value="false" required />
+            <label for="cough_no">No</label>
+        </div>
+        <div>
+            <label>Sore throat:</label>
+            <input id="soreThroat_yes" type="radio" name="soreThroat" value="true" required />
+            <label for="soreThroat_yes">Yes</label>
+            <input id="soreThroat_no" type="radio" name="soreThroat" value="false" required />
+            <label for="soreThroat_no">No</label>
+        </div>
+        <div>
+            <label>Fever or Chills:</label>
+            <input id="feverOrChills_yes" type="radio" name="feverOrChills" value="true" required />
+            <label for="feverOrChills_yes">Yes</label>
+            <input id="feverOrChills_no" type="radio" name="feverOrChills" value="false" required />
+            <label for="feverOrChills_no">No</label>
+        </div>
+        <div>
+            <label>Shortness of Breath:</label>
+            <input id="ṣhortnessOfBreath_yes" type="radio" name="ṣhortnessOfBreath" value="true" required />
+            <label for="ṣhortnessOfBreath_yes">Yes</label>
+            <input id="ṣhortnessOfBreath_no" type="radio" name="ṣhortnessOfBreath" value="false" required />
+            <label for="ṣhortnessOfBreath_no">No</label>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>
+            Vaccination status:
+        </legend>
+        <div>
+            <label>Are you vaccinated?</label>
+            <input id="vaccinated_yes" type="radio" name="vaccinated" value="true" required />
+            <label for="vaccinated_yes">Yes</label>
+            <input id="vaccinated_no" type="radio" name="vaccinated" value="false" required />
+            <label for="vaccinated_no">No</label>
+        </div>
+        <div>
+            <label for="lastVaccinationDate">
+                Last vaccination date:
+            </label>
+            <input type="date" name="lastVaccinationDate" id="lastVaccinationDate" />
+        </div>
+    </fieldset>
+    <button type="submit">Submit</button>
 </form>

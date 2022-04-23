@@ -11,6 +11,7 @@ using System.Web.Script.Serialization;
 
 namespace HospitalProject.Controllers
 {
+    //[Authorize]
     public class AnnouncementController : Controller
     {
         private static readonly HttpClient client;
@@ -60,12 +61,14 @@ namespace HospitalProject.Controllers
             return View(selectedannouncement);
         }
 
+        [Authorize]
         //GET: Error
         public ActionResult Error()
         {
             return View();
         }
 
+        [Authorize(Roles = "admin")]
         // GET: Announcement/New
         public ActionResult New()
         {
@@ -79,6 +82,7 @@ namespace HospitalProject.Controllers
             return View(StaffsOptions);
         }
 
+        [Authorize(Roles = "admin")]
         // POST: Announcement/Create
         [HttpPost]
         public ActionResult Create(Announcement announcement)
@@ -106,6 +110,7 @@ namespace HospitalProject.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         // GET: Announcement/Edit/5
         public ActionResult Edit(int id)
         {
@@ -129,6 +134,7 @@ namespace HospitalProject.Controllers
             return View(ViewModel);
         }
 
+        [Authorize(Roles = "admin")]
         // POST: Announcement/Update/5
         [HttpPost]
         public ActionResult Update(int id, Announcement announcement)
@@ -150,6 +156,7 @@ namespace HospitalProject.Controllers
 
         }
 
+        [Authorize(Roles = "admin")]
         // GET: Announcement/Delete/5
         public ActionResult DeleteConfirm(int id)
         {
@@ -159,6 +166,7 @@ namespace HospitalProject.Controllers
             return View(selectedannouncement);
         }
 
+        [Authorize(Roles = "admin")]
         // POST: Announcement/Delete/5
         [HttpPost]
         public ActionResult Delete(int id)

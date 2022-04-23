@@ -3,14 +3,58 @@
     ViewBag.Title = "List";
 }
 
-<a href="/Announcement/New">Add New Announcement</a>
 
-<h2>List</h2>
-@foreach(var announcement in Model)
-            {
-                <h2><a href="/Announcement/Details/@announcement.Id">@announcement.Title</a></h2>
-                <div>Description: @announcement.Description</div>
-                <div>PSA: @announcement.IsPSA</div>
-                <div>Url: @announcement.Url</div>
-                <div>Staff Name: @announcement.Name</div>
-            }
+
+<h2>List of Announcements</h2>
+
+<p>
+    @Html.ActionLink("Add New Announcement", "New")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            Title
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            PSA Status
+        </th>
+        <th>
+            Url
+        </th>
+        <th>
+            Staff Name
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var announcement in Model)
+    {
+        <tr>
+            <td>
+                @announcement.Title
+            </td>
+            <td>
+                @announcement.Description
+            </td>
+            <td>
+                @announcement.IsPSA
+            </td>
+            <td>
+                @announcement.Url
+            </td>
+            <td>
+                @announcement.Name
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = announcement.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = announcement.Id }) |
+                @Html.ActionLink("Delete", "DeleteConfirm", new { id = announcement.Id })
+            </td>
+        </tr>
+    }
+</table>
+

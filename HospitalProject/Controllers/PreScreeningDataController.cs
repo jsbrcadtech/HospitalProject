@@ -1,119 +1,92 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using HospitalProject.Models;
+using System.Diagnostics;
 
 namespace HospitalProject.Controllers
 {
+    [RoutePrefix("api/prescreening")]
     public class PreScreeningDataController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: api/PreScreeningData
-        public IQueryable<PreScreening> GetPreScreenings()
+        [Route("{userId}")]
+        [HttpGet]
+        public IHttpActionResult GetPreScreeningByUserId(string userId)
         {
-            return db.PreScreenings;
-        }
+            var preScreening = db.PreScreenings.SingleOrDefault(p => p.UserId == userId);
 
-        // GET: api/PreScreeningData/5
-        [ResponseType(typeof(PreScreening))]
-        public IHttpActionResult GetPreScreening(int id)
-        {
-            PreScreening preScreening = db.PreScreenings.Find(id);
             if (preScreening == null)
             {
                 return NotFound();
             }
-
-            return Ok(preScreening);
+            else
+            {
+                return Ok(preScreening);
+            }
         }
 
-        // PUT: api/PreScreeningData/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutPreScreening(int id, PreScreening preScreening)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != preScreening.Id)
-            {
-                return BadRequest();
-            }
-
-            db.Entry(preScreening).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!PreScreeningExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
-        }
+        /// <summary>
+        /// POST: api/PreScreeningData/AddPreScreening
+        /// api to add new prescreening data
+        /// </summary>
+        /// <requestBody>
+        /// {
+        /// "CreatedAt:"22-04-2022 03:23:39",
+        /// "UserId":"24f69878-ddcf-4d51-af3d-7bd390c15110",
+        /// "Vaccinated":"True",
+        /// "LastVaccinationDate":"13-04-2022 00:00:00"
+        /// "Cough":"False"
+        /// "SoarThroat":"False"
+        /// "FeverOrChills":"False"
+        /// "ShortnessOfBreath":"False"
+        /// }
+        /// </requestBody>
+        /// <returns>
+        /// Ok
+        /// {
+        /// "Id":12,
+        /// "CreatedAt:"22-04-2022 03:23:39",
+        /// "UserId":"24f69878-ddcf-4d51-af3d-7bd390c15110",
+        /// "Vaccinated":"True",
+        /// "LastVaccinationDate":"13-04-2022 00:00:00"
+        /// "Cough":"False"
+        /// "SoarThroat":"False"
+        /// "FeverOrChills":"False"
+        /// "ShortnessOfBreath":"False"
+        /// }
+        /// BadRequest - if request body is invalid
+        /// </returns>
 
         // POST: api/PreScreeningData/AddPreScreening
-        [ResponseType(typeof(PreScreening))]
+        [Route("")]
         [HttpPost]
         public IHttpActionResult AddPreScreening(PreScreening preScreening)
         {
+
+            Debug.WriteLine("Line1");
             if (!ModelState.IsValid)
             {
+                Debug.WriteLine("invalid");
                 return BadRequest(ModelState);
             }
 
+            RemoveOldData(preScreening.UserId);
+
+            preScreening.CreatedAt = DateTime.Now;
             db.PreScreenings.Add(preScreening);
             db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = preScreening.Id }, preScreening);
+            Debug.WriteLine("none is triggered");
+            //return CreatedAtRoute("DefaultApi", new { id = preScreening.Id }, preScreening);
+            return Ok();
         }
 
-        // DELETE: api/PreScreeningData/5
-        [ResponseType(typeof(PreScreening))]
-        public IHttpActionResult DeletePreScreening(int id)
+        private void RemoveOldData(string userId)
         {
-            PreScreening preScreening = db.PreScreenings.Find(id);
-            if (preScreening == null)
-            {
-                return NotFound();
-            }
-
-            db.PreScreenings.Remove(preScreening);
-            db.SaveChanges();
-
-            return Ok(preScreening);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool PreScreeningExists(int id)
-        {
-            return db.PreScreenings.Count(e => e.Id == id) > 0;
+            var preScreening = db.PreScreenings.Where(p => p.UserId == userId);
+            db.PreScreenings.RemoveRange(preScreening);
         }
     }
 }

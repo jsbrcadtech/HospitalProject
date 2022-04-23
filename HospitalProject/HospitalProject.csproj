@@ -200,7 +200,6 @@
     <Compile Include="Controllers\SpecializationDataController.cs" />
     <Compile Include="Controllers\StaffController.cs" />
     <Compile Include="Controllers\StaffDataController.cs" />
-    <Compile Include="Controllers\PreScreeningsDataController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -211,6 +210,14 @@
     <Compile Include="Migrations\202204011012521_adding CreatedAt column on prescreening model.cs" />
     <Compile Include="Migrations\202204011012521_adding CreatedAt column on prescreening model.Designer.cs">
       <DependentUpon>202204011012521_adding CreatedAt column on prescreening model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204220126054_LinkPreScreeningToUserId.cs" />
+    <Compile Include="Migrations\202204220126054_LinkPreScreeningToUserId.designer.cs">
+      <DependentUpon>202204220126054_LinkPreScreeningToUserId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204220326364_UpdatePreScreeningModel.cs" />
+    <Compile Include="Migrations\202204220326364_UpdatePreScreeningModel.designer.cs">
+      <DependentUpon>202204220326364_UpdatePreScreeningModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -362,6 +369,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202204011012521_adding CreatedAt column on prescreening model.resx">
       <DependentUpon>202204011012521_adding CreatedAt column on prescreening model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204220126054_LinkPreScreeningToUserId.resx">
+      <DependentUpon>202204220126054_LinkPreScreeningToUserId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204220326364_UpdatePreScreeningModel.resx">
+      <DependentUpon>202204220326364_UpdatePreScreeningModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

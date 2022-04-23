@@ -5,25 +5,39 @@
 
 <h2>Add</h2>
 
-<form>
-    <div class="form-group">
-        <label class="control-label" for="specializationId">Select specialization: </label>
-        <select class="form-control" name="specializationId" id="specializationId"></select>
-        <p id="staffErr" class="hidden err-msg"></p>
-    </div>
+@if (!ViewBag.PreScreeningCompleted)
+{
+    <a href="/prescreening/new">Please fill out the pre screening form before booking an appointment.</a>
+}
+else
+{
 
-    <div class="form-group">
-        <label class="control-label" for="staffId">Select doctor: </label>
-        <select class="form-control" name="staffId" id="staffId" disabled></select>
-    </div>
 
-    <div class="form-group">
-        <label class="control-label" for="appointmentDateTime">Date & Time:</label>
-        <select class="form-control" name="appointmentDateTime" id="appointmentDateTime" disabled></select>
-    </div>
+    <form>
+        <div class="form-group">
+            <label class="control-label" for="specializationId">Select specialization: </label>
+            <select class="form-control" name="specializationId" id="specializationId"></select>
+            <p id="staffErr" class="hidden err-msg"></p>
+        </div>
 
-    <button class="btn btn-primary" type="submit">Schedule Appointment</button>
-</form>
+        <div class="form-group">
+            <label class="control-label" for="staffId">Select doctor: </label>
+            <select class="form-control" name="staffId" id="staffId" disabled></select>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="appointmentDateTime">Date:</label>
+            <input class="form-control" type="date" name="date" />
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="appointmentDateTime">Time:</label>
+            <input class="form-control" type="time" name="time" />
+        </div>
+
+        <button class="btn btn-primary" type="submit">Schedule Appointment</button>
+    </form>
+}
 
 @Scripts.Render("~/Scripts/Common/service.js")
 @Scripts.Render("~/Scripts/appointment/appointment-service.js")

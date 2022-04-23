@@ -4,6 +4,9 @@ async function handleLoad() {
   const specializationEl = document.getElementById("specializationId");
   specializationEl.onchange = handleSpecSelection;
 
+  const form = document.forms.addForm;
+  form.onsubmit = handleSubmit;
+
   const specs = await getSpecializations();
   addSpecializationsToPage(specs);
 }
@@ -48,4 +51,16 @@ async function handleSpecSelection(e) {
   } else {
     staffEl.disabled = false;
   }
+}
+
+async function handleSubmit(e) {
+  e.preventDefault();
+  const form = e.target;
+  const data = {
+    staffId: form.staffId.value,
+    date: form.date.value,
+    time: form.time.value,
+  };
+
+  await addAppointment(data);
 }

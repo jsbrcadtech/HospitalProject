@@ -41,6 +41,14 @@ Pallav
 - client side validations using html5 and JS
 - server side validations
 
+# Appointments
+- api to add appointment
+- api to list appointment
+- api to delete appointment (allow delete only for future appointments)
+- check for pre screening form before scheduling appointment (allow appointment booking only if form is completed)
+- ajax call to dynamically load specializations and staffs
+- appointments are linked to logged in user
+
 -----------------------------------------------------
 
 Justus

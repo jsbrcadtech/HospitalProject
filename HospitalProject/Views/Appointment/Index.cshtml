@@ -1,0 +1,41 @@
+﻿@model IEnumerable<HospitalProject.Models.Appointment>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Add")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Staff
+        </th>
+        <th>
+            Time
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Staff.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Time)
+            </td>
+            <td>
+                @if (item.Time > DateTime.Now)
+                {
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                }
+            </td>
+        </tr>
+    }
+
+</table>

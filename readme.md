@@ -74,7 +74,7 @@ Justus
 - api to list all announcement in the system 
 - api to get an announcement details by its id
 - api to delete an announcement from the system
-- base authentication with no roles established for the update,add and delete routes.
+- base authentication with admin roles established for the update,add and delete routes.
 
 # Prescreening 
 
